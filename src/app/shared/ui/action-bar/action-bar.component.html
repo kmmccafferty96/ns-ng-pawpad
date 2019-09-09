@@ -1,0 +1,22 @@
+<ActionBar [title]="title" (loaded)="onLoadedActionBar()">
+  <NavigationButton
+    text="Back"
+    android.systemIcon="ic_menu_back"
+    *ngIf="canGoBack"
+    (tap)="onGoBack()"
+  ></NavigationButton>
+  <!-- <NavigationButton
+    *ngIf="android && hasMenu"
+    icon="res://menu_black"
+    (tap)="onToggleMenu()"
+  ></NavigationButton> -->
+  <!-- <ActionItem
+    *ngIf="hasMenu"
+    ios.position="left"
+    android.position="left"
+    (tap)="onToggleMenu()"
+  >
+    <Label text="&#xf0c9;" class="fa-solid"></Label>
+  </ActionItem> -->
+  <ng-content></ng-content>
+</ActionBar>

@@ -1,0 +1,135 @@
+
+/* @import '~nativescript-theme-core/css/core.light.css'; */
+@import '~nativescript-theme-core/scss/light';
+
+@import './theme/colors';
+
+$btn-color: $primary;
+
+@import '~nativescript-theme-core/scss/index';
+
+
+
+* {
+  font-family: 'Avenir LT Std', 'AvenirLTStd-Book', 'AvenirLTStd-Black', 'Avenir', sans-serif;
+  //font-weight: 800;
+ }
+
+ActionBar {
+  background: $primary;
+  color: darken($secondary, 25%);
+}
+
+.form {
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.form {
+  .input-field {
+    width: 75%;
+
+    .label {
+      color: $primary;
+      font-weight: bold;
+      //font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
+    }
+
+    .label.invalid {
+      color: $fail;
+    }
+
+    .input {
+      width: 100%;
+      height: 38;
+      border-radius: 30%;
+      padding: 0 20;
+      background-color: lighten($primary, 25%);
+    }
+
+    .md-input {
+      font-size:17;
+      border-color: darken($secondary, 10%);
+    }
+
+    .md-input, .input {
+      color: darken($secondary, 25%);
+    }
+
+    .input.ng-invalid.ng-touched {
+      border-bottom-color: $fail;
+      color: $fail;
+    }
+
+    .md-input.ng-invalid.ng-touched {
+      border-color: $fail;
+    }
+  }
+}
+
+
+
+
+.h1 {
+  font-weight: bold;
+  color: $primary;
+  //font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
+}
+
+.far {
+  font-family: 'Font Awesome 5 Free', 'Font-Awesome-5-Free-Regular-400';
+  font-weight: 400;
+}
+
+.fas {
+  font-family: 'Font Awesome 5 Free', 'Font-Awesome-5-Free-Solid-900';
+  font-weight: 900;
+}
+
+.fab {
+  font-family: 'Font Awesome 5 Brands', 'Font-Awesome-5-Brands-Regular-400';
+  font-weight: 400;
+}
+
+
+
+// .form-control {
+//   border-bottom-color: #7c015d;
+//   border-bottom-width: 2;
+//   margin: 5 0;
+//   font-size: 20;
+//   padding: 8 4;
+// }
+
+
+.drawer-container {
+  //background: linear-gradient(140deg, #2b0c72, #5c3fa0);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20;
+
+  .btn {
+    width: 80%;
+    font-size: 24;
+    height: 45;
+  }
+}
+
+.btn-flat {
+  background: transparent;
+  border-color: transparent;
+  border-width: 1;
+  color: $primary;
+}
+
+ .btn {
+  width: 100%;
+  border-width: 1;
+  padding: 5 10;
+  border-radius: 30%;
+  margin: 5 0;
+  border-color: transparent;
+}

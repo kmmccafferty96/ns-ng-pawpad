@@ -1,0 +1,13 @@
+<ActionBar title="Home"></ActionBar>
+<RadSideDrawer>
+    <FlexboxLayout tkDrawerContent class="drawer-container">
+        <Button text="Booking" nsRouterLink="booking" class="btn btn-primary"></Button>
+        <Button text="Camera" nsRouterLink="camera" class="btn btn-primary"></Button>
+        <Button text="Contact" nsRouterLink="contact" class="btn btn-primary"></Button>
+        <Button text="Home" nsRouterLink="home" class="btn btn-primary"></Button>
+        <Button text="Services" nsRouterLink="our-services" class="btn btn-primary"></Button>
+    </FlexboxLayout>
+    <StackLayout tkMainContent>
+        <page-router-outlet></page-router-outlet>
+    </StackLayout>
+</RadSideDrawer>
