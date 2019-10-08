@@ -1,11 +1,11 @@
-<ActionBar title="Home"></ActionBar>
 <RadSideDrawer>
     <FlexboxLayout tkDrawerContent class="drawer-container">
-        <Button text="Booking" nsRouterLink="booking" class="btn btn-primary"></Button>
-        <Button text="Camera" nsRouterLink="camera" class="btn btn-primary"></Button>
-        <Button text="Contact" nsRouterLink="contact" class="btn btn-primary"></Button>
-        <Button text="Home" nsRouterLink="home" class="btn btn-primary"></Button>
-        <Button text="Services" nsRouterLink="our-services" class="btn btn-primary"></Button>
+        <Button text="Booking" (tap)="navigate('booking')" class="btn btn-primary"></Button>
+        <Button text="Camera" (tap)="navigate('camera')" class="btn btn-primary"></Button>
+        <Button text="Contact" (tap)="navigate('contact')" class="btn btn-primary"></Button>
+        <Button text="Home" (tap)="navigate('')" class="btn btn-primary"></Button>
+        <Button text="Services" (tap)="navigate('our-services')" class="btn btn-primary"></Button>
+        <Button text="Logout" (tap)="onLogout()" class="btn btn-primary"></Button>
     </FlexboxLayout>
     <StackLayout tkMainContent>
         <page-router-outlet></page-router-outlet>

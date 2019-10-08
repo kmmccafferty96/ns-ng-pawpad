@@ -1,1 +1,9 @@
 /* Add mobile styles for the component here.  */
+
+.drawer-container {
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20;
+}

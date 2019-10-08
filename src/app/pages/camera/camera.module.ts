@@ -3,6 +3,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { CameraComponent } from "./camera.component";
+import { SharedModule } from "~/app/shared/shared.module";
 
 @NgModule({
     declarations: [CameraComponent],
@@ -10,7 +11,8 @@ import { CameraComponent } from "./camera.component";
         NativeScriptCommonModule,
         NativeScriptRouterModule.forChild([
             { path: '', component: CameraComponent }
-        ])
+        ]),
+        SharedModule
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

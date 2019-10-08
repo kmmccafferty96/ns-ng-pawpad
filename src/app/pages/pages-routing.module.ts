@@ -10,39 +10,39 @@ const routes: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: "home",
+                path: "",
                 loadChildren: () =>
-                    import("./home/home.module").then(
+                    import("~/app/pages/home/home.module").then(
                         m => m.HomeModule
                     )
             },
             {
                 path: "booking",
                 loadChildren: () =>
-                    import("./booking/booking.module").then(
+                    import("~/app/pages/booking/booking.module").then(
                         m => m.BookingModule
                     )
             },
             {
                 path: "camera",
                 loadChildren: () =>
-                    import("./camera/camera.module").then(m => m.CameraModule)
+                    import("~/app/pages/camera/camera.module").then(m => m.CameraModule)
             },
             {
                 path: "contact",
                 loadChildren: () =>
-                    import("./contact/contact.module").then(
+                    import("~/app/pages/contact/contact.module").then(
                         m => m.ContactModule
                     )
             },
             {
                 path: "our-services",
                 loadChildren: () =>
-                    import("./our-services/our-services.module").then(
+                    import("~/app/pages/our-services/our-services.module").then(
                         m => m.OurServicesModule
                     )
             },
-            { path: "**", redirectTo: "/pages/home", pathMatch: "full" }
+            //{ path: "**", redirectTo: "/pages/home", pathMatch: "full" }
         ]
     }
 ];

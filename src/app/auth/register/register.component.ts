@@ -8,7 +8,7 @@ import { AuthService } from "../auth.service";
 @Component({
     selector: "ns-register",
     templateUrl: "./register.component.html",
-    styleUrls: ["../auth.component.scss", "./register.component.css"]
+    styleUrls: ["../auth.scss", "./register.component.css"]
 })
 export class RegisterComponent implements OnInit {
     form: FormGroup;

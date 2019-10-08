@@ -96,7 +96,7 @@ export class AuthService {
         if (this.tokenExpirationTimer) {
             clearTimeout(this.tokenExpirationTimer);
         }
-        this.router.navigate(["/auth/login"], { clearHistory: true });
+        this.router.navigate(["/auth"], { clearHistory: true });
     }
 
     autoLogin() {

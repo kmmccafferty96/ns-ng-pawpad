@@ -1,25 +1,25 @@
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { Routes } from "@angular/router";
+import { Routes, PreloadAllModules } from "@angular/router";
 
 import { AuthGuard } from "./auth/auth.guard";
 
 const routes: Routes = [
+    { path: "", redirectTo: "/pages", pathMatch: "full" },
     {
         path: "auth",
-        loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+        loadChildren: () => import("~/app/auth/auth.module").then(m => m.AuthModule)
     },
     {
         path: "pages",
         loadChildren: () =>
-            import("./pages/pages.module").then(m => m.PagesModule),
-        //canLoad: [AuthGuard]
-    },
-    { path: "", redirectTo: "/pages/home", pathMatch: "full" }
+            import("~/app/pages/pages.module").then(m => m.PagesModule),
+        canLoad: [AuthGuard]
+    }
 ];
 
 @NgModule({
-    imports: [NativeScriptRouterModule.forRoot(routes)],
+    imports: [NativeScriptRouterModule.forRoot(routes, { enableTracing: false })],
     exports: [NativeScriptRouterModule],
     providers: [AuthGuard]
 })

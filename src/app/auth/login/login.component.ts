@@ -9,21 +9,21 @@ import { AuthService } from "../auth.service";
 @Component({
     selector: "ns-login",
     templateUrl: "./login.component.html",
-    styleUrls: ["../auth.component.scss", "./login.component.css"]
+    styleUrls: ["../auth.scss", "./login.component.css"]
 })
 export class LoginComponent implements OnInit {
     form: FormGroup;
     isLoading = false;
 
     constructor(
-        private page: Page,
-        private authService: AuthService,
-        private router: RouterExtensions
+        private _page: Page,
+        private _authService: AuthService,
+        private _router: RouterExtensions
     ) {}
 
     ngOnInit() {
         if (isAndroid) {
-            this.page.actionBarHidden = true;
+            this._page.actionBarHidden = true;
         }
 
         this.form = new FormGroup({
@@ -47,10 +47,10 @@ export class LoginComponent implements OnInit {
         const password = this.form.get("password").value;
 
         this.isLoading = true;
-        this.authService.login(email, password).subscribe(
+        this._authService.login(email, password).subscribe(
             response => {
                 this.isLoading = false;
-                this.router.navigate(["/pages/home"], { clearHistory: true });
+                this._router.navigateByUrl("/pages", { clearHistory: true });
             },
             error => {
                 this.isLoading = false;
