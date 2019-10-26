@@ -16,4 +16,5 @@ import { SharedModule } from "~/app/shared/shared.module";
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })
-export class BookingModule {}
+export class BookingModule {
+}

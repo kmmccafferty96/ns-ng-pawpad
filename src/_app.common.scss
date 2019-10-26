@@ -2,12 +2,15 @@
 /* @import '~nativescript-theme-core/css/core.light.css'; */
 @import '~nativescript-theme-core/scss/light';
 
+//@import './theme/default_theme.css';
+
 @import './theme/colors';
 
 $btn-color: $primary;
 
 @import '~nativescript-theme-core/scss/index';
 
+@import './animate.css';
 
 
 * {
@@ -25,7 +28,6 @@ ActionBar {
   flex-direction: column;
   align-items: center;
 }
-
 
 .form {
   .input-field {
@@ -68,9 +70,6 @@ ActionBar {
     }
   }
 }
-
-
-
 
 .h1 {
   font-weight: bold;

@@ -1,4 +1,31 @@
-<ns-action-bar title="Booking" [hasMenu]="true" [showBackButton]="false"></ns-action-bar>
-<StackLayout>
-    <Button text="booking works!" class="btn btn-primary"></Button>
-</StackLayout>
+<ns-action-bar
+  title="Booking"
+  [hasMenu]="true"
+  [showBackButton]="false"
+></ns-action-bar>
+<GridLayout row="0" col="0" rows="*" columns="*">
+  <StackLayout>
+    <Label
+      text="{{ startDate | date: 'M/d/y' }}"
+      class="scf-input"
+      (tap)="startDatePicker.open()"
+    ></Label>
+    <Label
+      text="{{ endDate | date: 'M/d/y' }}"
+      class="scf-input"
+      (tap)="endDatePicker.open()"
+    ></Label>
+  </StackLayout>
+  <ns-date-picker
+    #startDatePicker
+    title="Select Start Date"
+    [date]="startDate"
+    (selectedDate)="startDate = $event"
+  ></ns-date-picker>
+  <ns-date-picker
+    #endDatePicker
+    title="Select End Date"
+    [date]="endDate"
+    (selectedDate)="endDate = $event"
+  ></ns-date-picker>
+</GridLayout>
