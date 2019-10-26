@@ -6,14 +6,19 @@
 <GridLayout row="0" col="0" rows="*" columns="*">
   <StackLayout>
     <Label
-      text="{{ startDate | date: 'M/d/y' }}"
+      text="Start Date: {{ startDate | date: 'M/d/y' }}"
       class="scf-input"
       (tap)="startDatePicker.open()"
     ></Label>
     <Label
-      text="{{ endDate | date: 'M/d/y' }}"
+      text="End Date: {{ endDate | date: 'M/d/y' }}"
       class="scf-input"
       (tap)="endDatePicker.open()"
+    ></Label>
+    <Label
+      text="Start Time: {{ startTime }}"
+      class="scf-input"
+      (tap)="startTimePicker.open()"
     ></Label>
   </StackLayout>
   <ns-date-picker
@@ -28,4 +33,13 @@
     [date]="endDate"
     (selectedDate)="endDate = $event"
   ></ns-date-picker>
+  <ns-time-picker
+    #startTimePicker
+    title="Select Start Time"
+    [time]="startTime"
+    [minuteInterval]="minuteInterval"
+    [minHour]="minHour"
+    [maxHour]="maxHour"
+    (selectedTime)="startTime = $event"
+  ></ns-time-picker>
 </GridLayout>

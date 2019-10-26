@@ -4,6 +4,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { BookingComponent } from "./booking.component";
 import { SharedModule } from "~/app/shared/shared.module";
+import { DateTimeModule } from "~/app/shared/ui/date-time-pickers/date-time.module";
 
 @NgModule({
     declarations: [BookingComponent],
@@ -12,7 +13,8 @@ import { SharedModule } from "~/app/shared/shared.module";
         NativeScriptRouterModule.forChild([
             { path: '', component: BookingComponent }
         ]),
-        SharedModule
+        SharedModule,
+        DateTimeModule
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

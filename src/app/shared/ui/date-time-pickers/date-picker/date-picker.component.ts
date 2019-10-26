@@ -7,7 +7,7 @@ import { DatePicker } from "tns-core-modules/ui/date-picker/date-picker";
 @Component({
     selector: "ns-date-picker",
     templateUrl: "./date-picker.component.html",
-    styleUrls: ["./date-picker.component.scss"]
+    styleUrls: ["./date-picker.component.scss", "../date-time.scss"]
 })
 export class DatePickerComponent implements OnInit {
 
