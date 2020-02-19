@@ -1,14 +1,22 @@
+@import "~@nativescript/theme/core";
+@import "~@nativescript/theme/default";
 
-/* @import '~nativescript-theme-core/css/core.light.css'; */
-@import '~nativescript-theme-core/scss/light';
 
-//@import './theme/default_theme.css';
+// /* @import '~nativescript-theme-core/css/core.light.css'; */
+// @import '~nativescript-theme-core/scss/light';
+
+@import '~@nativescript/theme/scss/variables';
+
+// @import './theme/default_theme.css';
 
 @import './theme/colors';
 
 $btn-color: $primary;
 
-@import '~nativescript-theme-core/scss/index';
+// @import '~nativescript-theme-core/scss/index';
+
+// Core styles
+@import '~@nativescript/theme/index';
 
 @import './animate.css';
 
@@ -21,6 +29,7 @@ $btn-color: $primary;
 ActionBar {
   background: $primary;
   color: darken($secondary, 25%);
+  width: 100%;
 }
 
 .form {
@@ -58,6 +67,7 @@ ActionBar {
 
     .md-input, .input {
       color: darken($secondary, 25%);
+      margin-bottom: 10;
     }
 
     .input.ng-invalid.ng-touched {
@@ -73,8 +83,8 @@ ActionBar {
 
 .h1 {
   font-weight: bold;
-  color: $primary;
-  //font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
+  color: black;
+  margin:20;
 }
 
 .far {
@@ -124,11 +134,41 @@ ActionBar {
   color: $primary;
 }
 
- .btn {
+.btn-primary {
+  background-color: $btn-color;
+  color: white;
+}
+
+.btn-primary:active {
+  color: $secondary;
+}
+
+.btn {
   width: 100%;
   border-width: 1;
   padding: 5 10;
   border-radius: 30%;
   margin: 5 0;
   border-color: transparent;
+}
+
+.md-btn {
+  background-color: $btn-color;
+  color: white;
+}
+
+.md-card {
+  margin: 5 25 5 25;
+}
+
+.center {
+  text-align:center;
+}
+
+.section-heading {
+  margin-left:25;
+}
+
+.main-grid StackLayout {
+  background-color: #FBFCFD;
 }
