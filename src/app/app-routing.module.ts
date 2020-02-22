@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { Routes, PreloadAllModules } from "@angular/router";
+import { Routes } from "@angular/router";
 
 import { AuthGuard } from "./auth/auth.guard";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/pages/booking", pathMatch: "full" },
+    { path: "", redirectTo: "/pages", pathMatch: "full" },
     {
         path: "auth",
         loadChildren: () => import("~/app/auth/auth.module").then(m => m.AuthModule)
