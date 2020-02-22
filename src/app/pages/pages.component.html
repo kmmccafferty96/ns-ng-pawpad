@@ -1,13 +1,63 @@
 <RadSideDrawer>
-    <FlexboxLayout tkDrawerContent class="drawer-container">
-        <Button text="Booking" (tap)="navigate('booking')" class="btn btn-primary"></Button>
-        <Button text="Camera" (tap)="navigate('camera')" class="btn btn-primary"></Button>
-        <Button text="Contact" (tap)="navigate('contact')" class="btn btn-primary"></Button>
-        <Button text="Home" (tap)="navigate('')" class="btn btn-primary"></Button>
-        <Button text="Services" (tap)="navigate('our-services')" class="btn btn-primary"></Button>
-        <Button text="Logout" (tap)="onLogout()" class="btn btn-primary"></Button>
-    </FlexboxLayout>
-    <GridLayout tkMainContent>
-        <page-router-outlet></page-router-outlet>
-    </GridLayout>
+  <FlexboxLayout tkDrawerContent class="drawer-container">
+    <Button
+      text="Boarding"
+      (tap)="navigate(pageUrl.Booking)"
+      class="btn btn-primary"
+    ></Button>
+    <Button
+      text="Camera"
+      (tap)="navigate(pageUrl.Camera)"
+      class="btn btn-primary"
+    ></Button>
+    <Button
+      text="Contact"
+      (tap)="navigate(pageUrl.Contact)"
+      class="btn btn-primary"
+    ></Button>
+    <Button
+      text="Home"
+      (tap)="navigate(pageUrl.Home)"
+      class="btn btn-primary"
+    ></Button>
+    <Button
+      text="Services"
+      (tap)="navigate(pageUrl.Services)"
+      class="btn btn-primary"
+    ></Button>
+    <Button text="Logout" (tap)="onLogout()" class="btn btn-primary"></Button>
+  </FlexboxLayout>
+  <GridLayout tkMainContent rows="*, auto">
+    <StackLayout row="0">
+      <page-router-outlet></page-router-outlet>
+    </StackLayout>
+    <BottomNavigationBar
+      #bottomNavigationBar
+      row="1"
+      titleVisibility="Selected"
+      (loaded)="onBottomNavigationBarLoaded()"
+      (tabSelected)="onBottomNavigationTabSelected($event)"
+    >
+      <BottomNavigationTab
+        title="Home"
+        icon="res://ic_home"
+      ></BottomNavigationTab>
+      <BottomNavigationTab
+        title="Boarding"
+        icon="res://ic_calendar"
+      ></BottomNavigationTab>
+      <BottomNavigationTab
+        title="Camera"
+        icon="res://ic_camera"
+      ></BottomNavigationTab>
+      <BottomNavigationTab
+        title="Profile"
+        icon="res://ic_account"
+      ></BottomNavigationTab>
+      <BottomNavigationTab
+        title="Contact"
+        icon="res://ic_phone"
+      ></BottomNavigationTab>
+    </BottomNavigationBar>
+  </GridLayout>
 </RadSideDrawer>

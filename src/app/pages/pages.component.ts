@@ -4,17 +4,24 @@ import {
     OnDestroy,
     ViewChild,
     AfterViewInit,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    ElementRef
 } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { Page } from "tns-core-modules/ui/page/page";
-import { ActivatedRoute } from "@angular/router";
+import {
+    ActivatedRoute,
+    Router,
+    NavigationEnd,
+} from "@angular/router";
 import { Subscription } from "rxjs";
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { TabSelectedEventData, BottomNavigationBar } from "nativescript-material-bottomnavigationbar";
 
 import { UIService } from "../shared/ui.service";
 import { AuthService } from "../auth/auth.service";
+import { PageURL } from "./helpers/enums/page-url.enum";
 
 @Component({
     selector: "ns-pages",
@@ -24,11 +31,24 @@ import { AuthService } from "../auth/auth.service";
 export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(RadSideDrawerComponent, { static: false })
     drawerComponent: RadSideDrawerComponent;
+    @ViewChild('bottomNavigationBar', { read: ElementRef, static: false })
+    bottomNavigationBar: ElementRef<BottomNavigationBar>;
     private _drawerSub: Subscription;
-    private _drawer: RadSideDrawer
+    private _drawer: RadSideDrawer;
+    private _pageIndexMap = [
+        PageURL.Home.toString(),
+        PageURL.Booking.toString(),
+        PageURL.Camera.toString(),
+        PageURL.Services.toString(),
+        PageURL.Contact.toString()
+    ];
+
+    // Assign enum to variable for use in the template
+    pageUrl = PageURL;
 
     constructor(
         private _router: RouterExtensions,
+        private _ngRouter: Router,
         private _page: Page,
         private _route: ActivatedRoute,
         private _uiService: UIService,
@@ -44,6 +64,12 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.drawerComponent.sideDrawer.toggleDrawerState();
             }
         });
+
+        this._ngRouter.events.subscribe((val: NavigationEnd) => {
+            if (val instanceof NavigationEnd) {
+                this.selectTabByRouteString(val.url);
+            }
+        });
     }
 
     ngAfterViewInit() {
@@ -53,12 +79,24 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     navigate(url: string) {
-        this._uiService.toggleDrawer();
+        if (this._drawer) {
+            this.drawerComponent.sideDrawer.closeDrawer();
+        }
         this._router.navigate([url], {
             transition: { name: "fade" },
             clearHistory: true,
             relativeTo: this._route
         });
+    }
+
+    onBottomNavigationBarLoaded() {
+        if (this._router) {
+            this.selectTabByRouteString(this._router.router.url.toString());
+        }
+    }
+
+    onBottomNavigationTabSelected(event: TabSelectedEventData) {
+        this.navigate(this._pageIndexMap[event.newIndex]);
     }
 
     onLogout() {
@@ -70,5 +108,20 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this._drawerSub) {
             this._drawerSub.unsubscribe();
         }
+    }
+
+    private selectTabByRouteString(route: string) {
+        const path = this.cleanRouteString(route);
+        const index = this._pageIndexMap.indexOf(path);
+
+        this.bottomNavigationBar.nativeElement.selectTab(index);
+    }
+
+    private cleanRouteString(route: string) {
+        if (route === "/pages") {
+            return "";
+        }
+
+        return route.substring(route.lastIndexOf("/") + 1);
     }
 }

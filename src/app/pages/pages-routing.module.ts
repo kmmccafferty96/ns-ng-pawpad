@@ -3,6 +3,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
 import { PagesComponent } from "./pages.component";
+import { PageURL } from "./helpers/enums/page-url.enum";
 
 const routes: Routes = [
     {
@@ -10,33 +11,33 @@ const routes: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: "",
+                path: PageURL.Home,
                 loadChildren: () =>
                     import("~/app/pages/home/home.module").then(
                         m => m.HomeModule
                     )
             },
             {
-                path: "booking",
+                path: PageURL.Booking,
                 loadChildren: () =>
                     import("~/app/pages/booking/booking.module").then(
                         m => m.BookingModule
                     )
             },
             {
-                path: "camera",
+                path: PageURL.Camera,
                 loadChildren: () =>
                     import("~/app/pages/camera/camera.module").then(m => m.CameraModule)
             },
             {
-                path: "contact",
+                path: PageURL.Contact,
                 loadChildren: () =>
                     import("~/app/pages/contact/contact.module").then(
                         m => m.ContactModule
                     )
             },
             {
-                path: "our-services",
+                path: PageURL.Services,
                 loadChildren: () =>
                     import("~/app/pages/our-services/our-services.module").then(
                         m => m.OurServicesModule

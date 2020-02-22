@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DatePickerComponent } from "~/app/shared/ui/date-time-pickers/date-picker/date-picker.component";
 import { TimePickerComponent } from "~/app/shared/ui/date-time-pickers/time-picker/time-picker.component";
+import { PageBase } from "../helpers/classes/page-base";
 
 @Component({
     selector: "ns-booking",
     templateUrl: "./booking.component.html",
     styleUrls: ["./booking.component.css"]
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent extends PageBase implements OnInit {
     @ViewChild('startDatePicker', { static: false }) startDatePicker: DatePickerComponent;
     @ViewChild('endDatePicker', { static: false }) endDatePicker: DatePickerComponent;
     @ViewChild('timePicker', { static: false }) timePicker: TimePickerComponent;
@@ -19,8 +20,6 @@ export class BookingComponent implements OnInit {
     minHour: number = 9;
     maxHour: number = 17;
     minuteInterval: number = 15;
-
-    constructor(){}
 
     ngOnInit() {
         this.maxDate.setDate(this.minDate.getDate() + 14);
