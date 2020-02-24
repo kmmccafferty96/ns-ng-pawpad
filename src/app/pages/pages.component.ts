@@ -19,7 +19,7 @@ import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { TabSelectedEventData, BottomNavigationBar } from "nativescript-material-bottomnavigationbar";
 
-import { UIService } from "../shared/ui.service";
+import { SideDrawerService } from "../shared/services/side-drawer.service";
 import { AuthService } from "../auth/auth.service";
 import { PageURL } from "./helpers/enums/page-url.enum";
 
@@ -51,7 +51,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         private _ngRouter: Router,
         private _page: Page,
         private _route: ActivatedRoute,
-        private _uiService: UIService,
+        private _uiService: SideDrawerService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _authService: AuthService
     ) {}

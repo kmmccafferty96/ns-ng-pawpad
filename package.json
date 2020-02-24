@@ -29,6 +29,7 @@
     "nativescript-material-button": "^3.1.8",
     "nativescript-material-cardview": "^3.1.8",
     "nativescript-material-core": "^3.1.8",
+    "nativescript-material-snackbar": "^3.1.8",
     "nativescript-material-textfield": "^3.1.8",
     "nativescript-ui-sidedrawer": "^8.0.0",
     "reflect-metadata": "~0.1.12",
