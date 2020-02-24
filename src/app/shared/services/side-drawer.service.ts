@@ -2,7 +2,7 @@ import { Injectable, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class UIService {
+export class SideDrawerService {
   private _drawerState = new BehaviorSubject<void>(null);
   private _rootVCRef: ViewContainerRef;
 
