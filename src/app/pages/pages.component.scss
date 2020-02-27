@@ -1,0 +1,23 @@
+/* Add mobile styles for the component here.  */
+
+.drawer-container {
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20;
+}
+
+.activity-overlay {
+    z-index:999;
+
+    AbsoluteLayout {
+        horizontal-alignment: center;
+        vertical-alignment: center;
+    }
+
+    MDActivityIndicator {
+        width: 75;
+        height: 75;
+    }
+}

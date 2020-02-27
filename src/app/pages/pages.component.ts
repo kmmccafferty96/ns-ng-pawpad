@@ -22,13 +22,15 @@ import { TabSelectedEventData, BottomNavigationBar } from "nativescript-material
 import { SideDrawerService } from "../shared/services/side-drawer.service";
 import { AuthService } from "../auth/auth.service";
 import { PageURL } from "./helpers/enums/page-url.enum";
+import { Acting } from "../shared/decorators/acting.decorator";
 
 @Component({
     selector: "ns-pages",
     templateUrl: "./pages.component.html",
-    styleUrls: ["./pages.component.css"]
+    styleUrls: ["./pages.component.scss"]
 })
 export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
+    @Acting() acting$;
     @ViewChild(RadSideDrawerComponent, { static: false })
     drawerComponent: RadSideDrawerComponent;
     @ViewChild('bottomNavigationBar', { read: ElementRef, static: false })
@@ -109,6 +111,12 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
             this._drawerSub.unsubscribe();
         }
     }
+
+    /**
+     * This method doesn't do a whole lot - nothing actually. It's called on the tap event of
+     * the GridLayout as a workaround to suppress any clicks behind it on Android.
+     */
+    doNothing() { }
 
     private selectTabByRouteString(route: string) {
         const path = this.cleanRouteString(route);
