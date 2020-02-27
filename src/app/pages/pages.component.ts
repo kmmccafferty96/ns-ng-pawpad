@@ -11,7 +11,6 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { Page } from "tns-core-modules/ui/page/page";
 import {
     ActivatedRoute,
-    Router,
     NavigationEnd,
 } from "@angular/router";
 import { Subscription } from "rxjs";
@@ -48,7 +47,6 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         private _router: RouterExtensions,
-        private _ngRouter: Router,
         private _page: Page,
         private _route: ActivatedRoute,
         private _uiService: SideDrawerService,
@@ -65,7 +63,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
             }
         });
 
-        this._ngRouter.events.subscribe((val: NavigationEnd) => {
+        this._router.router.events.subscribe((val: NavigationEnd) => {
             if (val instanceof NavigationEnd) {
                 this.selectTabByRouteString(val.url);
             }
