@@ -1,45 +1,33 @@
-<ns-action-bar
-  title="Booking"
-  [hasMenu]="true"
-  [showBackButton]="false"
-></ns-action-bar>
+<ns-action-bar title="Booking" [hasMenu]="true" [showBackButton]="false"></ns-action-bar>
 <GridLayout row="0" col="0" rows="*" columns="*">
-  <StackLayout>
-    <Label
-      text="Start Date: {{ startDate | date: 'M/d/y' }}"
-      class="scf-input"
-      (tap)="startDatePicker.open()"
-    ></Label>
-    <Label
-      text="End Date: {{ endDate | date: 'M/d/y' }}"
-      class="scf-input"
-      (tap)="endDatePicker.open()"
-    ></Label>
-    <Label
-      text="Start Time: {{ startTime }}"
-      class="scf-input"
-      (tap)="startTimePicker.open()"
-    ></Label>
-  </StackLayout>
-  <ns-date-picker
-    #startDatePicker
-    title="Select Start Date"
-    [date]="startDate"
-    (selectedDate)="startDate = $event"
-  ></ns-date-picker>
-  <ns-date-picker
-    #endDatePicker
-    title="Select End Date"
-    [date]="endDate"
-    (selectedDate)="endDate = $event"
-  ></ns-date-picker>
-  <ns-time-picker
-    #startTimePicker
-    title="Select Start Time"
-    [time]="startTime"
-    [minuteInterval]="minuteInterval"
-    [minHour]="minHour"
-    [maxHour]="maxHour"
-    (selectedTime)="startTime = $event"
-  ></ns-time-picker>
+    <StackLayout>
+        <Label
+            text="Start Date: {{ startDate | date: 'M/d/y' }}"
+            class="scf-input"
+            (tap)="startDatePicker.open()"
+        ></Label>
+        <Label text="End Date: {{ endDate | date: 'M/d/y' }}" class="scf-input" (tap)="endDatePicker.open()"></Label>
+        <Label text="Start Time: {{ startTime }}" class="scf-input" (tap)="startTimePicker.open()"></Label>
+    </StackLayout>
+    <ns-date-picker
+        #startDatePicker
+        title="Select Start Date"
+        [date]="startDate"
+        (selectedDate)="startDate = $event"
+    ></ns-date-picker>
+    <ns-date-picker
+        #endDatePicker
+        title="Select End Date"
+        [date]="endDate"
+        (selectedDate)="endDate = $event"
+    ></ns-date-picker>
+    <ns-time-picker
+        #startTimePicker
+        title="Select Start Time"
+        [time]="startTime"
+        [minuteInterval]="minuteInterval"
+        [minHour]="minHour"
+        [maxHour]="maxHour"
+        (selectedTime)="startTime = $event"
+    ></ns-time-picker>
 </GridLayout>

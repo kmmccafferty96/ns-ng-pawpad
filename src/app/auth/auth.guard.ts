@@ -1,22 +1,16 @@
-import { CanLoad, Route, UrlSegment } from "@angular/router";
-import { Injectable } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
-import { Observable, of } from "rxjs";
-import { take, switchMap, tap } from "rxjs/operators";
+import { CanLoad, Route, UrlSegment } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular/router';
+import { Observable, of } from 'rxjs';
+import { take, switchMap, tap } from 'rxjs/operators';
 
-import { AuthService } from "./auth.service";
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanLoad {
-    constructor(
-        private authService: AuthService,
-        private router: RouterExtensions
-    ) {}
+    constructor(private authService: AuthService, private router: RouterExtensions) {}
 
-    canLoad(
-        route: Route,
-        segments: UrlSegment[]
-    ): Observable<boolean> | Promise<boolean> | boolean {
+    canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
         return this.authService.user.pipe(
             take(1),
             switchMap(currentUser => {
@@ -27,7 +21,7 @@ export class AuthGuard implements CanLoad {
             }),
             tap(isAuth => {
                 if (!isAuth) {
-                    this.router.navigate(["/auth"]);
+                    this.router.navigate(['/auth']);
                 }
             })
         );

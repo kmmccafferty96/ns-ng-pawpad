@@ -3,22 +3,22 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SideDrawerService {
-  private _drawerState = new BehaviorSubject<void>(null);
-  private _rootVCRef: ViewContainerRef;
+    private _drawerState = new BehaviorSubject<void>(null);
+    private _rootVCRef: ViewContainerRef;
 
-  get drawerState() {
-    return this._drawerState.asObservable();
-  }
+    get drawerState() {
+        return this._drawerState.asObservable();
+    }
 
-  toggleDrawer() {
-    this._drawerState.next(null);
-  }
+    toggleDrawer() {
+        this._drawerState.next(null);
+    }
 
-  setRootVCRef(vcRef: ViewContainerRef) {
-    this._rootVCRef = vcRef;
-  }
+    setRootVCRef(vcRef: ViewContainerRef) {
+        this._rootVCRef = vcRef;
+    }
 
-  getRootVCRef() {
-    return this._rootVCRef;
-  }
+    getRootVCRef() {
+        return this._rootVCRef;
+    }
 }

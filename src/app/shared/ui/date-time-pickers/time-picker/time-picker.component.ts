@@ -1,21 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { GridLayout } from "tns-core-modules/ui/layouts/grid-layout";
-import { Visibility } from "tns-core-modules/ui/enums";
-import { Page } from "tns-core-modules/ui/page/page";
-import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { GridLayout } from 'tns-core-modules/ui/layouts/grid-layout';
+import { Visibility } from 'tns-core-modules/ui/enums';
+import { Page } from 'tns-core-modules/ui/page/page';
+import { TimePicker } from 'tns-core-modules/ui/time-picker/time-picker';
 
 @Component({
-    selector: "ns-time-picker",
-    templateUrl: "./time-picker.component.html",
-    styleUrls: ["./time-picker.component.scss", "../date-time.scss"]
+    selector: 'ns-time-picker',
+    templateUrl: './time-picker.component.html',
+    styleUrls: ['./time-picker.component.scss', '../date-time.scss'],
 })
 export class TimePickerComponent implements OnInit {
-
     private selectTimeGridLayout: GridLayout;
     private overlayGridLayout: GridLayout;
     private timePicker: TimePicker;
 
-    @Input() title: string = "Select Time";
+    @Input() title: string = 'Select Time';
     @Input() time: Date = new Date();
     @Input() minuteInterval: number = 1;
     @Input() minHour: number = 0;
@@ -40,12 +39,12 @@ export class TimePickerComponent implements OnInit {
 
     close() {
         this.selectTimeGridLayout.className = 'select-date';
-        this.overlayGridLayout.animate({ opacity: 0, duration: 300 })
+        this.overlayGridLayout
+            .animate({ opacity: 0, duration: 300 })
             .then(() => {
                 this.selectTimeGridLayout.visibility = <any>Visibility.collapse;
             })
-            .catch(() => {
-            });
+            .catch(() => {});
     }
 
     onSubmit() {

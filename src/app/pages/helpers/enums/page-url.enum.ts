@@ -4,5 +4,5 @@ export enum PageURL {
     Booking = 'boarding',
     Camera = 'camera',
     Services = 'our-services',
-    Contact = 'contact'
+    Contact = 'contact',
 }

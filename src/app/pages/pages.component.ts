@@ -1,32 +1,21 @@
-import {
-    Component,
-    OnInit,
-    OnDestroy,
-    ViewChild,
-    AfterViewInit,
-    ChangeDetectorRef,
-    ElementRef
-} from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
-import { Page } from "tns-core-modules/ui/page/page";
-import {
-    ActivatedRoute,
-    NavigationEnd,
-} from "@angular/router";
-import { Subscription } from "rxjs";
-import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
-import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { TabSelectedEventData, BottomNavigationBar } from "nativescript-material-bottomnavigationbar";
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ChangeDetectorRef, ElementRef } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular/router';
+import { Page } from 'tns-core-modules/ui/page/page';
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular/side-drawer-directives';
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material-bottomnavigationbar';
 
-import { SideDrawerService } from "../shared/services/side-drawer.service";
-import { AuthService } from "../auth/auth.service";
-import { PageURL } from "./helpers/enums/page-url.enum";
-import { Acting } from "../shared/decorators/acting.decorator";
+import { SideDrawerService } from '../shared/services/side-drawer.service';
+import { AuthService } from '../auth/auth.service';
+import { PageURL } from './helpers/enums/page-url.enum';
+import { Acting } from '../shared/decorators/acting.decorator';
 
 @Component({
-    selector: "ns-pages",
-    templateUrl: "./pages.component.html",
-    styleUrls: ["./pages.component.scss"]
+    selector: 'ns-pages',
+    templateUrl: './pages.component.html',
+    styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     @Acting() acting$;
@@ -41,7 +30,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         PageURL.Booking.toString(),
         PageURL.Camera.toString(),
         PageURL.Services.toString(),
-        PageURL.Contact.toString()
+        PageURL.Contact.toString(),
     ];
 
     // Assign enum to variable for use in the template
@@ -83,9 +72,9 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
             this.drawerComponent.sideDrawer.closeDrawer();
         }
         this._router.navigate([url], {
-            transition: { name: "fade" },
+            transition: { name: 'fade' },
             clearHistory: true,
-            relativeTo: this._route
+            relativeTo: this._route,
         });
     }
 
@@ -114,7 +103,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
      * This method doesn't do a whole lot - nothing actually. It's called on the tap event of
      * the GridLayout as a workaround to suppress any clicks behind it on Android.
      */
-    doNothing() { }
+    doNothing() {}
 
     private selectTabByRouteString(route: string) {
         const path = this.cleanRouteString(route);
@@ -124,10 +113,10 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private cleanRouteString(route: string) {
-        if (route === "/pages") {
-            return "";
+        if (route === '/pages') {
+            return '';
         }
 
-        return route.substring(route.lastIndexOf("/") + 1);
+        return route.substring(route.lastIndexOf('/') + 1);
     }
 }

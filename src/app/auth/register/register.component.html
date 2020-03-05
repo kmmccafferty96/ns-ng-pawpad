@@ -1,75 +1,75 @@
 <ns-action-bar title="Sign Up" [showBackButton]="true" [hasMenu]="false"> </ns-action-bar>
 <ScrollView>
-  <StackLayout class="form" [formGroup]="form">
-    <StackLayout class="input-field">
-      <MDTextField
-        class="md-input"
-        variant="outline"
-        hint="First Name"
-        returnKeyType="next"
-        #firstNameEl
-        formControlName="firstName"
-      ></MDTextField>
+    <StackLayout class="form" [formGroup]="form">
+        <StackLayout class="input-field">
+            <MDTextField
+                class="md-input"
+                variant="outline"
+                hint="First Name"
+                returnKeyType="next"
+                #firstNameEl
+                formControlName="firstName"
+            ></MDTextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <MDTextField
+                class="md-input"
+                variant="outline"
+                hint="Last Name"
+                returnKeyType="next"
+                #lastNameEl
+                formControlName="lastName"
+            ></MDTextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <MDTextField
+                class="md-input"
+                variant="outline"
+                hint="Email"
+                returnKeyType="next"
+                [autocorrect]="false"
+                autocapitalizationType="none"
+                #emailEl
+                formControlName="email"
+            ></MDTextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <MDTextField
+                class="md-input"
+                variant="outline"
+                hint="Password"
+                returnKeyType="next"
+                [autocorrect]="false"
+                autocapitalizationType="none"
+                [secure]="true"
+                helper="Min. 6 characters"
+                #passwordEl
+                formControlName="password"
+            ></MDTextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <MDTextField
+                class="md-input"
+                variant="outline"
+                hint="Verify Password"
+                returnKeyType="done"
+                [autocorrect]="false"
+                autocapitalizationType="none"
+                [secure]="true"
+                #verifyPasswordEl
+                formControlName="verifyPassword"
+            ></MDTextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <MDButton
+                class="md-btn"
+                text="Sign Up"
+                [isEnabled]="form.valid"
+                (tap)="onSubmit()"
+                *ngIf="!isLoading"
+            ></MDButton>
+            <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+            <!-- <Button text="Sign Up" class="btn btn-primary btn-rounded-lg" disabled="true"></Button> -->
+        </StackLayout>
     </StackLayout>
-    <StackLayout class="input-field">
-      <MDTextField
-        class="md-input"
-        variant="outline"
-        hint="Last Name"
-        returnKeyType="next"
-        #lastNameEl
-        formControlName="lastName"
-      ></MDTextField>
-    </StackLayout>
-    <StackLayout class="input-field">
-      <MDTextField
-        class="md-input"
-        variant="outline"
-        hint="Email"
-        returnKeyType="next"
-        [autocorrect]="false"
-        autocapitalizationType="none"
-        #emailEl
-        formControlName="email"
-      ></MDTextField>
-    </StackLayout>
-    <StackLayout class="input-field">
-      <MDTextField
-        class="md-input"
-        variant="outline"
-        hint="Password"
-        returnKeyType="next"
-        [autocorrect]="false"
-        autocapitalizationType="none"
-        [secure]="true"
-        helper="Min. 6 characters"
-        #passwordEl
-        formControlName="password"
-      ></MDTextField>
-    </StackLayout>
-    <StackLayout class="input-field">
-      <MDTextField
-        class="md-input"
-        variant="outline"
-        hint="Verify Password"
-        returnKeyType="done"
-        [autocorrect]="false"
-        autocapitalizationType="none"
-        [secure]="true"
-        #verifyPasswordEl
-        formControlName="verifyPassword"
-      ></MDTextField>
-    </StackLayout>
-    <StackLayout class="input-field">
-      <MDButton
-        class="md-btn"
-        text="Sign Up"
-        [isEnabled]="form.valid"
-        (tap)="onSubmit()"
-        *ngIf="!isLoading"
-      ></MDButton>
-      <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
-      <!-- <Button text="Sign Up" class="btn btn-primary btn-rounded-lg" disabled="true"></Button> -->
-    </StackLayout>
-  </StackLayout>
 </ScrollView>

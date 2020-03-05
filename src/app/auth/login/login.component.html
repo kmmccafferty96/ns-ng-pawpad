@@ -1,47 +1,42 @@
 <GridLayout scaleX="1.0" scaleY="1.0" rows="*, *">
-  <StackLayout row="0" class="logo-wrapper">
-    <Image class="logo" src="res://pawpad_logo_primary"></Image>
-  </StackLayout>
-  <StackLayout row="1" class="form" [formGroup]="form">
-    <StackLayout class="input-field">
-      <TextField
-        class="input"
-        hint="Email"
-        returnKeyType="next"
-        keyboardType="email"
-        [autocorrect]="false"
-        autocapitalizationType="none"
-        #emailEl
-        formControlName="email"
-      ></TextField>
+    <StackLayout row="0" class="logo-wrapper">
+        <Image class="logo" src="res://pawpad_logo_primary"></Image>
     </StackLayout>
-    <StackLayout class="input-field">
-      <TextField
-        class="input"
-        hint="Password"
-        returnKeyType="done"
-        [autocorrect]="false"
-        autocapitalizationType="none"
-        [secure]="true"
-        #passwordEl
-        formControlName="password"
-      ></TextField>
+    <StackLayout row="1" class="form" [formGroup]="form">
+        <StackLayout class="input-field">
+            <TextField
+                class="input"
+                hint="Email"
+                returnKeyType="next"
+                keyboardType="email"
+                [autocorrect]="false"
+                autocapitalizationType="none"
+                #emailEl
+                formControlName="email"
+            ></TextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <TextField
+                class="input"
+                hint="Password"
+                returnKeyType="done"
+                [autocorrect]="false"
+                autocapitalizationType="none"
+                [secure]="true"
+                #passwordEl
+                formControlName="password"
+            ></TextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <Button text="Log In" class="btn btn-primary btn-rounded-lg" (tap)="onSubmit()" *ngIf="!isLoading"></Button>
+            <Button
+                text="Sign Up"
+                class="btn btn-flat btn-signup"
+                nsRouterLink="/auth/register"
+                pageTransition="slide"
+                *ngIf="!isLoading"
+            ></Button>
+            <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+        </StackLayout>
     </StackLayout>
-    <StackLayout class="input-field">
-      <Button
-        text="Log In"
-        class="btn btn-primary btn-rounded-lg"
-        (tap)="onSubmit()"
-        *ngIf="!isLoading"
-      ></Button>
-      <Button
-        text="Sign Up"
-        class="btn btn-flat btn-signup"
-        nsRouterLink="/auth/register"
-        pageTransition="slide"
-        *ngIf="!isLoading"
-      ></Button>
-      <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
-    </StackLayout>
-  </StackLayout>
 </GridLayout>

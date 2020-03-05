@@ -23,9 +23,7 @@
             "watch": false,
             "stopOnEntry": true,
             "launchTests": true,
-            "tnsArgs": [
-                "--justlaunch"
-            ]
+            "tnsArgs": ["--justlaunch"]
         },
         {
             "name": "Attach on iOS",
@@ -55,9 +53,7 @@
             "watch": false,
             "stopOnEntry": true,
             "launchTests": true,
-            "tnsArgs": [
-                "--justlaunch"
-            ]
+            "tnsArgs": ["--justlaunch"]
         },
         {
             "name": "Attach on Android",

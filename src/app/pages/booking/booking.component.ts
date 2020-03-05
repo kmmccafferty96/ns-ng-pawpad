@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { DatePickerComponent } from "~/app/shared/ui/date-time-pickers/date-picker/date-picker.component";
-import { TimePickerComponent } from "~/app/shared/ui/date-time-pickers/time-picker/time-picker.component";
-import { PageBase } from "../helpers/classes/page-base";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DatePickerComponent } from '~/app/shared/ui/date-time-pickers/date-picker/date-picker.component';
+import { TimePickerComponent } from '~/app/shared/ui/date-time-pickers/time-picker/time-picker.component';
+import { PageBase } from '../helpers/classes/page-base';
 
 @Component({
-    selector: "ns-booking",
-    templateUrl: "./booking.component.html",
-    styleUrls: ["./booking.component.css"]
+    selector: 'ns-booking',
+    templateUrl: './booking.component.html',
+    styleUrls: ['./booking.component.css'],
 })
 export class BookingComponent extends PageBase implements OnInit {
     @ViewChild('startDatePicker', { static: false }) startDatePicker: DatePickerComponent;

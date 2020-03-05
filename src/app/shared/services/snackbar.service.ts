@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { SnackBar, SnackBarOptions } from "nativescript-material-snackbar";
+import { Injectable } from '@angular/core';
+import { SnackBar, SnackBarOptions } from 'nativescript-material-snackbar';
 
 /** Service for displaying a snackbar (toast) message */
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class SnackbarService {
     private _snackbar = new SnackBar();
 
@@ -14,13 +14,7 @@ export class SnackbarService {
         maxLines?: number,
         isRTL?: boolean
     ): Promise<any> {
-        return await this._snackbar.simple(
-            message,
-            textColor,
-            backgroundColor,
-            maxLines,
-            isRTL
-        );
+        return await this._snackbar.simple(message, textColor, backgroundColor, maxLines, isRTL);
     }
 
     /** Displays a snackbar with an action button. */

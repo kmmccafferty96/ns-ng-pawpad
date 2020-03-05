@@ -1,56 +1,29 @@
+<GridLayout row="0" col="0" class="overlay" rows="*" columns="*" opacity="0" id="overlayGridLayout"> </GridLayout>
 <GridLayout
-  row="0"
-  col="0"
-  class="overlay"
-  rows="*"
-  columns="*"
-  opacity="0"
-  id="overlayGridLayout"
->
-</GridLayout>
-<GridLayout
-  row="0"
-  col="0"
-  rows="auto, auto, auto"
-  columns="*,*"
-  verticalAlignment="center"
-  class="select-date"
-  id="selectTimeGridLayout"
-  visibility="hidden"
-  opacity="0"
->
-  <Label
     row="0"
     col="0"
-    colSpan="2"
-    [text]="title"
-    class="title-select-date"
-  ></Label>
-  <TimePicker
-  id="timePicker"
-    row="1"
-    col="0"
-    colSpan="2"
+    rows="auto, auto, auto"
+    columns="*,*"
     verticalAlignment="center"
-    [time]="time"
-    [minuteInterval]="minuteInterval"
-    [minHour]="minHour"
-    [maxHour]="maxHour"
-    verticalAlignment="center"
-  >
-</TimePicker>
-  <Button
-    row="2"
-    col="0"
-    text="Cancel"
-    class="btn-next"
-    (tap)="onCancel()"
-  ></Button>
-  <Button
-    row="2"
-    col="1"
-    text="Done"
-    class="btn-previous"
-    (tap)="onSubmit()"
-  ></Button>
+    class="select-date"
+    id="selectTimeGridLayout"
+    visibility="hidden"
+    opacity="0"
+>
+    <Label row="0" col="0" colSpan="2" [text]="title" class="title-select-date"></Label>
+    <TimePicker
+        id="timePicker"
+        row="1"
+        col="0"
+        colSpan="2"
+        verticalAlignment="center"
+        [time]="time"
+        [minuteInterval]="minuteInterval"
+        [minHour]="minHour"
+        [maxHour]="maxHour"
+        verticalAlignment="center"
+    >
+    </TimePicker>
+    <Button row="2" col="0" text="Cancel" class="btn-next" (tap)="onCancel()"></Button>
+    <Button row="2" col="1" text="Done" class="btn-previous" (tap)="onSubmit()"></Button>
 </GridLayout>
