@@ -9,8 +9,9 @@ import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material
 
 import { SideDrawerService } from '../shared/services/side-drawer.service';
 import { AuthService } from '../auth/auth.service';
-import { PageURL } from './helpers/enums/page-url.enum';
+import { PageURL } from '../shared/helpers/enums/page-url.enum';
 import { Acting } from '../shared/decorators/acting.decorator';
+import { Loading } from '../shared/decorators/loading.decorator';
 
 @Component({
     selector: 'ns-pages',
@@ -19,18 +20,20 @@ import { Acting } from '../shared/decorators/acting.decorator';
 })
 export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     @Acting() acting$;
+    @Loading() loading$;
     @ViewChild(RadSideDrawerComponent, { static: false })
     drawerComponent: RadSideDrawerComponent;
     @ViewChild('bottomNavigationBar', { read: ElementRef, static: false })
     bottomNavigationBar: ElementRef<BottomNavigationBar>;
+    private _routerSub: Subscription;
     private _drawerSub: Subscription;
     private _drawer: RadSideDrawer;
     private _pageIndexMap = [
         PageURL.Home.toString(),
-        PageURL.Booking.toString(),
+        PageURL.Boarding.toString(),
         PageURL.Camera.toString(),
-        PageURL.Services.toString(),
         PageURL.Contact.toString(),
+        PageURL.Services.toString(),
     ];
 
     // Assign enum to variable for use in the template
@@ -40,7 +43,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         private _router: RouterExtensions,
         private _page: Page,
         private _route: ActivatedRoute,
-        private _uiService: SideDrawerService,
+        private _sideDrawerService: SideDrawerService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _authService: AuthService
     ) {}
@@ -48,15 +51,16 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnInit() {
         this._page.actionBarHidden = true;
 
-        this._drawerSub = this._uiService.drawerState.subscribe(() => {
+        this._drawerSub = this._sideDrawerService.drawerState.subscribe(() => {
             if (this._drawer) {
                 this.drawerComponent.sideDrawer.toggleDrawerState();
             }
         });
 
-        this._router.router.events.subscribe((val: NavigationEnd) => {
-            if (val instanceof NavigationEnd) {
-                this.selectTabByRouteString(val.url);
+        // Subscribe to route changes in order to update bottom navigation status
+        this._routerSub = this._router.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.selectTabByRouteString(event.url);
             }
         });
     }
@@ -89,13 +93,16 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onLogout() {
-        this._uiService.toggleDrawer();
+        this._sideDrawerService.toggleDrawer();
         this._authService.logout();
     }
 
     ngOnDestroy() {
         if (this._drawerSub) {
             this._drawerSub.unsubscribe();
+        }
+        if (this._routerSub) {
+            this._routerSub.unsubscribe();
         }
     }
 

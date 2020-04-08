@@ -153,8 +153,12 @@ ActionBar {
     color: white;
 }
 
+.md-btn-cancel {
+    background-color: $fail;
+}
+
 .md-card {
-    margin: 5 25 5 25;
+    margin: 0 25 0 25;
 }
 
 .center {
@@ -162,9 +166,10 @@ ActionBar {
 }
 
 .section-heading {
-    margin-left: 25;
+    margin: 30 0 10 25;
+    font-weight: bold;
 }
 
-.main-grid StackLayout {
-    background-color: #fbfcfd;
+.page-content {
+    background-color: #f5f7f9;
 }

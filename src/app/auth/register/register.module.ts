@@ -4,8 +4,8 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SharedModule } from '../../shared/shared.module';
 import { RegisterComponent } from './register.component';
-import { SharedModule } from '~/app/shared/shared.module';
 
 @NgModule({
     declarations: [RegisterComponent],

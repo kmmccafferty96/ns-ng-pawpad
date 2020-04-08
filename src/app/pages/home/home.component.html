@@ -1,4 +1,18 @@
 <ns-action-bar title="Home" [hasMenu]="true" [showBackButton]="false"></ns-action-bar>
-<StackLayout>
-    <Button text="home works!" class="btn btn-primary"></Button>
-</StackLayout>
+<ScrollView class="page-content">
+    <StackLayout>
+        <Label class="h1 center" text="Welcome Keegan!"></Label>
+        <Image class="qr-image" borderWidth="5" src="res://qr"></Image>
+        <Label class="id center" text="ID: 153689"></Label>
+        <Label class="h2 section-heading" text="Current Daycare"></Label>
+        <ns-current-daycare-card></ns-current-daycare-card>
+        <Label class="h2 section-heading" text="Upcoming Boarding"></Label>
+        <ns-boarding-list></ns-boarding-list>
+        <MDButton
+            class="md-btn schedule-btn"
+            text="Schedule Boarding"
+            nsRouterLink="boarding"
+            clearHistory="true"
+        ></MDButton>
+    </StackLayout>
+</ScrollView>

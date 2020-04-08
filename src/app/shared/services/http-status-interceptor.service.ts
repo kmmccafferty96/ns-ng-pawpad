@@ -13,8 +13,9 @@ export class HttpStatusInterceptor implements HttpInterceptor {
     constructor(private httpStatusService: HttpStatusService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        this.changeStatus(true, req.method);
         return next.handle(req.clone()).pipe(
-            catchError(e => {
+            catchError((e) => {
                 if (e.status === 400) {
                     this.httpStatusService.validationErrors = e.error.validationErrors;
                     return NEVER;
@@ -27,7 +28,8 @@ export class HttpStatusInterceptor implements HttpInterceptor {
         );
     }
 
-    private changeStatus(v: boolean, method: string): void {
+    // TODO - make this private again after mock data has been removed
+    changeStatus(v: boolean, method: string): void {
         if (['POST', 'PUT', 'DELETE', 'PATCH'].indexOf(method) > -1) {
             v ? this.actingCalls++ : this.actingCalls--;
             this.httpStatusService.acting = this.actingCalls > 0;

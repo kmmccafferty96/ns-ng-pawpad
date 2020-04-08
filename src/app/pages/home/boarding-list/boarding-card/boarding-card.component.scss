@@ -1,0 +1,19 @@
+.boarding-card {
+    // Add minimal margin to top of card because of weird issue with android where the border won't be shown without it
+    margin-top: 0.1;
+    margin-bottom: 5;
+
+    FlexboxLayout {
+        justify-content: space-between;
+    }
+}
+
+.dog-container {
+    orientation: horizontal;
+}
+
+.dates-container {
+    font-size: 15;
+    flex-direction: column;
+    margin: 10;
+}

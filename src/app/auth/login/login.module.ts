@@ -5,7 +5,7 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
-import { SharedModule } from '~/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [LoginComponent],

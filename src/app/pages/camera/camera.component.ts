@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { PageBase } from '../helpers/classes/page-base';
+
+import { PageBase } from '../../shared/helpers/classes/page-base';
 
 @Component({
     selector: 'ns-camera',
