@@ -1,7 +1,7 @@
 /** Enum for simple page routes ('contact' vs. '/pages/contact') */
 export enum PageURL {
     Home = '',
-    Booking = 'boarding',
+    Boarding = 'boarding',
     Camera = 'camera',
     Services = 'our-services',
     Contact = 'contact',

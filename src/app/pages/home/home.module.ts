@@ -3,10 +3,13 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { HomeComponent } from './home.component';
-import { SharedModule } from '~/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
+import { CurrentDaycareCard } from './current-daycare-card/current-daycare-card.component';
+import { BoardingList } from './boarding-list/boarding-list.component';
+import { BoardingCard } from './boarding-list/boarding-card/boarding-card.component';
 
 @NgModule({
-    declarations: [HomeComponent],
+    declarations: [HomeComponent, CurrentDaycareCard, BoardingList, BoardingCard],
     imports: [
         NativeScriptCommonModule,
         NativeScriptRouterModule.forChild([{ path: '', component: HomeComponent }]),

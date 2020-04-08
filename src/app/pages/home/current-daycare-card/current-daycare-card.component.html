@@ -1,0 +1,16 @@
+<MDCardView class="md-card">
+    <FlexboxLayout *ngIf="currentDaycare" justifyContent="space-between">
+        <StackLayout orientation="horizontal">
+            <ns-dog-avatar *ngFor="let dog of currentDaycare.dogs" [dog]="dog"></ns-dog-avatar>
+        </StackLayout>
+        <MDButton
+            class="md-btn pickup-btn"
+            [ngClass]="{ 'md-btn-cancel': pickupStatus }"
+            [text]="!pickupStatus ? 'On My Way' : 'Cancel'"
+            (tap)="togglePickupStatus()"
+        ></MDButton>
+    </FlexboxLayout>
+    <StackLayout *ngIf="!currentDaycare" class="center" style="height: 89;">
+        <Label text="You do not currently have any dogs in daycare."></Label>
+    </StackLayout>
+</MDCardView>

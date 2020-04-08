@@ -3,7 +3,7 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { OurServicesComponent } from './our-services.component';
-import { SharedModule } from '~/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [OurServicesComponent],

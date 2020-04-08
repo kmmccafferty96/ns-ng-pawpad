@@ -1,0 +1,11 @@
+<MDCardView class="md-card boarding-card" (tap)="onBoardingClicked()">
+    <FlexboxLayout>
+        <FlexboxLayout class="dates-container" justifyContent="space-around">
+            <Label text="Start Date: {{ boarding.startDate.format('MM/DD/YYYY') }}"></Label>
+            <Label text="End Date:  {{ boarding.endDate.format('MM/DD/YYYY') }}"></Label>
+        </FlexboxLayout>
+        <StackLayout class="dog-container">
+            <ns-dog-avatar *ngFor="let dog of boarding.dogs" [dog]="dog"></ns-dog-avatar>
+        </StackLayout>
+    </FlexboxLayout>
+</MDCardView>
