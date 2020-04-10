@@ -6,10 +6,9 @@ import * as moment from 'moment';
 import { DialogService } from './dialog.service';
 import { SnackBarService } from './snackbar.service';
 import { Daycare } from '../models/daycare.interface';
-import { PagesModule } from '../../pages/pages.module';
 import { HttpStatusInterceptor } from './http-status-interceptor.service';
 
-@Injectable({ providedIn: PagesModule })
+@Injectable({ providedIn: 'root' })
 export class DaycareService {
     simulatedDelay = 600;
 

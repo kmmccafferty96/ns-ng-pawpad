@@ -4,13 +4,12 @@ import { action } from 'tns-core-modules/ui/dialogs/dialogs';
 import { BehaviorSubject } from 'rxjs';
 import * as moment from 'moment';
 
-import { PagesModule } from '../../pages/pages.module';
 import { DialogService } from './dialog.service';
 import { PageURL } from '../helpers/enums/page-url.enum';
 import { Boarding } from '../models/boarding.interface';
 import { HttpStatusInterceptor } from './http-status-interceptor.service';
 
-@Injectable({ providedIn: PagesModule })
+@Injectable({ providedIn: 'root' })
 export class BoardingService {
     simulatedDelay = 600;
 

@@ -4,15 +4,15 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { AppCommonModule } from '../../shared/app-common.module';
 import { LoginComponent } from './login.component';
-import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [LoginComponent],
     imports: [
         NativeScriptCommonModule,
         NativeScriptRouterModule.forChild([{ path: '', component: LoginComponent }]),
-        SharedModule,
+        AppCommonModule,
         NativeScriptFormsModule,
         ReactiveFormsModule,
     ],
