@@ -6,11 +6,9 @@ import { AppCommonModule } from '../../shared/app-common.module';
 import { SharedComponentsModule } from '../../shared/shared-components.module';
 import { HomeComponent } from './home.component';
 import { CurrentDaycareCard } from './current-daycare-card/current-daycare-card.component';
-import { BoardingList } from './boarding-list/boarding-list.component';
-import { BoardingCard } from './boarding-list/boarding-card/boarding-card.component';
 
 @NgModule({
-    declarations: [HomeComponent, CurrentDaycareCard, BoardingList, BoardingCard],
+    declarations: [HomeComponent, CurrentDaycareCard],
     imports: [
         NativeScriptCommonModule,
         NativeScriptRouterModule.forChild([{ path: '', component: HomeComponent }]),
