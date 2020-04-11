@@ -24,12 +24,6 @@ $btn-color: $primary;
     //font-weight: 800;
 }
 
-ActionBar {
-    background: $primary;
-    color: darken($secondary, 25%);
-    width: 100%;
-}
-
 .form {
     justify-content: flex-start;
     flex-direction: column;
@@ -82,7 +76,7 @@ ActionBar {
 
 .h1 {
     font-weight: bold;
-    color: black;
+    color: darken($secondary, 25%);
     margin: 20;
 }
 

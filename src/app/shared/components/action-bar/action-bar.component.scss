@@ -1,0 +1,7 @@
+@import '../../../../theme/colors';
+
+ActionBar {
+    background: $action-bar;
+    color: darken($secondary, 25%);
+    width: 100%;
+}
