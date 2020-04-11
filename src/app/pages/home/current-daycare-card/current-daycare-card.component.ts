@@ -12,35 +12,23 @@ import { DaycareService } from '../../../shared/services/daycare.service';
 })
 export class CurrentDaycareCard implements OnDestroy {
     private _currentDaycareSub: Subscription;
-    private _pickupStatusSub: Subscription;
 
-    currentDaycare: Daycare = undefined;
-    pickupStatus = false;
+    /** Current Daycare for the logged in user */
+    currentDaycare: Daycare;
 
     constructor(private _daycareService: DaycareService) {
-        // Get the initial values for daycare and pickup status
-        this._daycareService.getCurrentDaycare();
-        this._daycareService.getPickupStatus();
-
-        this._currentDaycareSub = this._daycareService.currentDaycare$.subscribe((val) => {
-            this.currentDaycare = val;
-        });
-
-        this._pickupStatusSub = this._daycareService.pickupStatus$.subscribe((val) => {
-            this.pickupStatus = val;
+        this._currentDaycareSub = this._daycareService.loggedInUserCurrentDaycare$.subscribe((daycare) => {
+            this.currentDaycare = daycare;
         });
     }
 
     togglePickupStatus() {
-        this._daycareService.togglePickupStatusAsync();
+        this._daycareService.toggleLoggedInUserPickupStatusAsync();
     }
 
     ngOnDestroy() {
         if (this._currentDaycareSub) {
             this._currentDaycareSub.unsubscribe();
-        }
-        if (this._pickupStatusSub) {
-            this._pickupStatusSub.unsubscribe();
         }
     }
 }

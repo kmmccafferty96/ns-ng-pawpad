@@ -8,12 +8,12 @@ const routes: Routes = [
     { path: '', redirectTo: '/pages', pathMatch: 'full' },
     {
         path: 'auth',
-        loadChildren: () => import('~/app/auth/auth.module').then(m => m.AuthModule),
+        loadChildren: () => import('~/app/auth/auth.module').then((m) => m.AuthModule),
     },
     {
         path: 'pages',
-        loadChildren: () => import('~/app/pages/pages.module').then(m => m.PagesModule),
-        //canLoad: [AuthGuard]
+        loadChildren: () => import('~/app/pages/pages.module').then((m) => m.PagesModule),
+        canLoad: [AuthGuard],
     },
 ];
 

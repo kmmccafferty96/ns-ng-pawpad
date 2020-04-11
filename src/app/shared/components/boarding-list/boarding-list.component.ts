@@ -16,10 +16,8 @@ export class BoardingList implements OnDestroy {
     boardings: Boarding[];
 
     constructor(private _boardingService: BoardingService) {
-        this._boardingService.getBoardings();
-
-        this._boardingsSub = this._boardingService.boardings$.subscribe((val) => {
-            this.boardings = val;
+        this._boardingsSub = this._boardingService.loggedInUserBoardings$.subscribe((boardings) => {
+            this.boardings = boardings;
         });
     }
 
