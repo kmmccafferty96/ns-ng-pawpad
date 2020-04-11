@@ -10,7 +10,7 @@ declare var android: any;
 @Component({
     selector: 'ns-action-bar',
     templateUrl: './action-bar.component.html',
-    styleUrls: ['./action-bar.component.css'],
+    styleUrls: ['./action-bar.component.scss'],
 })
 export class ActionBarComponent implements OnInit {
     @Input() title: string;
