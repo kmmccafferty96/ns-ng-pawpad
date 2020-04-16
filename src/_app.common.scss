@@ -19,9 +19,10 @@ $btn-color: $primary;
 
 @import './animate.css';
 
+@import './theme/fonts';
+
 * {
-    font-family: 'Avenir LT Std', 'AvenirLTStd-Book', 'AvenirLTStd-Black', 'Avenir', sans-serif;
-    //font-weight: 800;
+    @extend .font-normal;
 }
 
 .form {
@@ -35,9 +36,8 @@ $btn-color: $primary;
         width: 75%;
 
         .label {
+            @extend .font-bold;
             color: $primary;
-            font-weight: bold;
-            //font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
         }
 
         .label.invalid {
@@ -75,7 +75,7 @@ $btn-color: $primary;
 }
 
 .h1 {
-    font-weight: bold;
+    @extend .font-bold;
     color: darken($secondary, 25%);
     margin: 20;
 }
@@ -160,8 +160,8 @@ $btn-color: $primary;
 }
 
 .section-heading {
+    @extend .font-bold;
     margin: 30 0 10 25;
-    font-weight: bold;
 }
 
 .page-content {

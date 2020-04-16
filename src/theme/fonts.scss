@@ -1,0 +1,56 @@
+/*
+    Because Android needs the full font file name to work, I created
+    classes for each font weight. This will ensure that the same font
+    and font-weight is being used on iOS and Android for all text.
+    Traditionally, changing font weights would be done like this:
+
+    .custom-class {
+        font-weight: 400;
+        ...
+    }
+
+    However in order to use this correctly you must now do this:
+
+    .custom-class {
+        extend .font-400;
+        ...
+    }
+
+    NOTE: I tried using @font-face, but that didn't work. This was
+    the most elegant solution.
+*/
+
+.font-100,
+.font-200 {
+    font-family: 'AvenirNext-UltraLight', 'Avenir Next';
+    font-weight: 200;
+}
+
+.font-300,
+.font-400,
+.font-normal {
+    font-family: 'AvenirNext-Regular', 'Avenir Next';
+    font-weight: 400;
+}
+
+.font-500 {
+    font-family: 'AvenirNext-Medium', 'Avenir Next';
+    font-weight: 500;
+}
+
+.font-600 {
+    font-family: 'AvenirNext-DemiBold', 'Avenir Next';
+    font-weight: 600;
+}
+
+.font-700,
+.font-bold {
+    font-family: 'AvenirNext-Bold', 'Avenir Next';
+    font-weight: 700;
+}
+
+.font-800,
+.font-900 {
+    font-family: 'AvenirNext-Heavy', 'Avenir Next';
+    font-weight: 900;
+}
