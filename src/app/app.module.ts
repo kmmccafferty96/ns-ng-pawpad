@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA, Injector } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
+import { NativeScriptMaterialBottomSheetModule } from 'nativescript-material-bottomsheet/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +28,12 @@ if (applicationModule.android) {
 
 @NgModule({
     bootstrap: [AppComponent],
-    imports: [NativeScriptModule, AppRoutingModule, NativeScriptHttpClientModule],
+    imports: [
+        NativeScriptModule,
+        AppRoutingModule,
+        NativeScriptHttpClientModule,
+        NativeScriptMaterialBottomSheetModule.forRoot(),
+    ],
     declarations: [AppComponent],
     providers: [
         {
