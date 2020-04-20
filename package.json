@@ -33,6 +33,7 @@
         "nativescript-material-dialogs": "^3.2.2",
         "nativescript-material-snackbar": "^3.2.2",
         "nativescript-material-textfield": "^3.2.2",
+        "nativescript-ui-calendar": "^6.1.0",
         "nativescript-ui-sidedrawer": "^8.0.1",
         "reflect-metadata": "~0.1.12",
         "rxjs": "^6.5.5",

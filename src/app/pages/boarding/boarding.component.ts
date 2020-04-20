@@ -1,28 +1,33 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+import { Page } from 'tns-core-modules/ui/page/page';
+import { BottomSheetOptions } from 'nativescript-material-bottomsheet/angular';
 
 import { PageBase } from '../../shared/helpers/classes/page-base';
-import { DatePickerComponent } from '../../shared/components/date-time-pickers/date-picker/date-picker.component';
-import { TimePickerComponent } from '../../shared/components/date-time-pickers/time-picker/time-picker.component';
+import { SheetService } from '../../shared/services/sheet.service';
+import { DatePickerSheetComponent } from './date-picker-sheet/date-picker-sheet.component';
+import { DateRange } from 'nativescript-ui-calendar';
 
 @Component({
     selector: 'ns-boarding',
     templateUrl: './boarding.component.html',
-    styleUrls: ['./boarding.component.css'],
+    styleUrls: ['./boarding.component.scss'],
 })
-export class BoardingComponent extends PageBase implements OnInit {
-    @ViewChild('startDatePicker', { static: false }) startDatePicker: DatePickerComponent;
-    @ViewChild('endDatePicker', { static: false }) endDatePicker: DatePickerComponent;
-    @ViewChild('timePicker', { static: false }) timePicker: TimePickerComponent;
-    startDate: Date = new Date(2018, 7, 1);
-    endDate: Date = new Date(2018, 7, 1);
-    minDate: Date = new Date();
-    maxDate: Date = new Date();
-    startTime: Date = new Date(0, 0, 0, 12, 0);
-    minHour: number = 9;
-    maxHour: number = 17;
-    minuteInterval: number = 15;
+export class BoardingComponent extends PageBase {
+    constructor(page: Page, private _sheetService: SheetService, private _viewContainerRef: ViewContainerRef) {
+        super(page);
+    }
 
-    ngOnInit() {
-        this.maxDate.setDate(this.minDate.getDate() + 14);
+    openDateSheet() {
+        const options: BottomSheetOptions = {
+            viewContainerRef: this._viewContainerRef,
+            context: new DateRange(
+                new Date('Wed Apr 22 2020 00:00:00 GMT-0400 (EDT)'),
+                new Date('Fri Apr 24 2020 00:00:00 GMT-0400 (EDT)')
+            ),
+        };
+
+        this._sheetService.show(DatePickerSheetComponent, options).subscribe((result) => {
+            console.log('Option selected:', result);
+        });
     }
 }
