@@ -18,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [NativeScriptRouterModule.forRoot(routes, { enableTracing: false })],
+    imports: [NativeScriptRouterModule.forRoot(routes)],
     exports: [NativeScriptRouterModule],
     providers: [AuthGuard],
 })
