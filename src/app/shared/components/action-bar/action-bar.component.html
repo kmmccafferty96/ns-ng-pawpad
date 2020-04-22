@@ -1,13 +1,9 @@
-<ActionBar flat="true" [title]="title" (loaded)="onLoadedActionBar()">
-    <NavigationButton
-        text="Log In"
-        android.systemIcon="ic_menu_back"
-        *ngIf="canGoBack"
-        (tap)="onGoBack()"
-    ></NavigationButton>
+<ActionBar flat="true" (loaded)="onLoadedActionBar()">
+    <NavigationButton android.systemIcon="ic_menu_back" *ngIf="canGoBack" (tap)="onGoBack()"></NavigationButton>
     <NavigationButton *ngIf="android && hasMenu" icon="res://menu_black" (tap)="onToggleMenu()"></NavigationButton>
     <ActionItem *ngIf="!android && hasMenu" ios.position="left" (tap)="onToggleMenu()">
-        <Label text="&#xf0c9;" class="fas"></Label>
+        <Label text="&#xf0c9;" class="fas ios-menu-icon"></Label>
     </ActionItem>
+    <Label [text]="title" class="title"></Label>
     <ng-content></ng-content>
 </ActionBar>
