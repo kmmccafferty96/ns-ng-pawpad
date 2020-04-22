@@ -13,6 +13,8 @@ import { DateRange } from 'nativescript-ui-calendar';
     styleUrls: ['./boarding.component.scss'],
 })
 export class BoardingComponent extends PageBase {
+    dateRange: DateRange;
+
     constructor(page: Page, private _sheetService: SheetService, private _viewContainerRef: ViewContainerRef) {
         super(page);
     }
@@ -20,14 +22,13 @@ export class BoardingComponent extends PageBase {
     openDateSheet() {
         const options: BottomSheetOptions = {
             viewContainerRef: this._viewContainerRef,
-            context: new DateRange(
-                new Date('Wed Apr 22 2020 00:00:00 GMT-0400 (EDT)'),
-                new Date('Fri Apr 24 2020 00:00:00 GMT-0400 (EDT)')
-            ),
+            context: this.dateRange,
         };
 
         this._sheetService.show(DatePickerSheetComponent, options).subscribe((result) => {
-            console.log('Option selected:', result);
+            if (result) {
+                this.dateRange = result;
+            }
         });
     }
 }

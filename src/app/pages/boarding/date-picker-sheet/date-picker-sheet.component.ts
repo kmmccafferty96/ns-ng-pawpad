@@ -3,6 +3,7 @@ import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { RadCalendarComponent } from 'nativescript-ui-calendar/angular/calendar-directives';
+import { DateRange } from 'nativescript-ui-calendar';
 
 /** Component passed to the bottom sheet service to display a date picker */
 @Component({
@@ -12,16 +13,24 @@ import { RadCalendarComponent } from 'nativescript-ui-calendar/angular/calendar-
 })
 export class DatePickerSheetComponent implements AfterViewInit {
     /** Calendar in the template */
-    @ViewChild(RadCalendarComponent, { static: false }) private calendar: RadCalendarComponent;
+    @ViewChild(RadCalendarComponent, { static: false }) private calendarComponent: RadCalendarComponent;
 
     /** Current date for use in the template */
     currentDate: Moment = moment();
 
     constructor(private _bottomSheetParams: BottomSheetParams) {}
 
-    /** If a selected date range was passed in, set the calendar to it */
     ngAfterViewInit(): void {
-        this.calendar.nativeElement.selectedDateRange = this._bottomSheetParams.context;
+        /* If a selected date range was passed in, set the calendar to it.
+        Wrapped in a setTimeout because some calendar features aren't immediately
+        available after the view initializes on Android. */
+        setTimeout(() => {
+            const dateRange: DateRange = this._bottomSheetParams.context;
+            if (dateRange) {
+                this.calendarComponent.calendar.displayedDate = dateRange.startDate;
+                this.calendarComponent.calendar.selectedDateRange = dateRange;
+            }
+        });
     }
 
     /** Close the sheet (returns undefined) */
@@ -31,7 +40,7 @@ export class DatePickerSheetComponent implements AfterViewInit {
 
     /** Save the calendar and return the selected date range (undefined if nothing selected) */
     save() {
-        const dateRange = this.calendar.nativeElement.selectedDateRange;
+        const dateRange = this.calendarComponent.calendar.selectedDateRange;
         this._bottomSheetParams.closeCallback(dateRange);
     }
 }
