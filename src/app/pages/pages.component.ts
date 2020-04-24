@@ -89,7 +89,12 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onBottomNavigationTabSelected(event: TabSelectedEventData) {
-        this.navigate(this._pageIndexMap[event.newIndex]);
+        const prevUrl = this.cleanRouteString(this._router.router.url);
+        const newUrl = this._pageIndexMap[event.newIndex];
+
+        if (prevUrl != newUrl) {
+            this.navigate(newUrl);
+        }
     }
 
     onLogout() {
@@ -124,6 +129,13 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
             return '';
         }
 
-        return route.substring(route.lastIndexOf('/') + 1);
+        route = route.replace('/pages/', '');
+
+        const firstSlashIndex = route.indexOf('/');
+        if (firstSlashIndex > -1) {
+            route = route.substring(0, firstSlashIndex);
+        }
+
+        return route;
     }
 }
