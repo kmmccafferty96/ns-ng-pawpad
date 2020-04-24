@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { themer } from 'nativescript-material-core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterExtensions } from 'nativescript-angular/router';
 
@@ -22,8 +21,6 @@ export class RegisterComponent implements OnInit {
     constructor(private authService: AuthService, private router: RouterExtensions) {}
 
     ngOnInit() {
-        themer.setPrimaryColor('#B6A168');
-
         this.form = new FormGroup({
             firstName: new FormControl(null, {
                 updateOn: 'change',
@@ -47,23 +44,23 @@ export class RegisterComponent implements OnInit {
             }),
         });
 
-        this.form.get('firstName').statusChanges.subscribe(status => {
+        this.form.get('firstName').statusChanges.subscribe((status) => {
             this.firstNameControlIsValid = status === 'VALID';
         });
 
-        this.form.get('lastName').statusChanges.subscribe(status => {
+        this.form.get('lastName').statusChanges.subscribe((status) => {
             this.lastNameControlIsValid = status === 'VALID';
         });
 
-        this.form.get('email').statusChanges.subscribe(status => {
+        this.form.get('email').statusChanges.subscribe((status) => {
             this.emailControlIsValid = status === 'VALID';
         });
 
-        this.form.get('password').statusChanges.subscribe(status => {
+        this.form.get('password').statusChanges.subscribe((status) => {
             this.passwordControlIsValid = status === 'VALID';
         });
 
-        this.form.get('verifyPassword').statusChanges.subscribe(status => {
+        this.form.get('verifyPassword').statusChanges.subscribe((status) => {
             this.verifyPasswordControlIsValid = status === 'VALID';
         });
     }
@@ -81,11 +78,11 @@ export class RegisterComponent implements OnInit {
 
         this.isLoading = true;
         this.authService.signUp(firstName, lastName, email, password).subscribe(
-            response => {
+            (response) => {
                 this.isLoading = false;
                 this.router.navigate(['/pages/home'], { clearHistory: true });
             },
-            error => {
+            (error) => {
                 this.isLoading = false;
             }
         );
