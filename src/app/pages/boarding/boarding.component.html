@@ -1,6 +1,7 @@
 <ns-action-bar title="Boarding" [hasMenu]="true" [showBackButton]="false"></ns-action-bar>
 <ScrollView class="page-content">
     <StackLayout>
-        <MDButton class="md-btn" (tap)="openDateSheet()" text="Open Boarding Sheet"></MDButton>
+        <Label class="h2 section-heading" text="Upcoming Boarding"></Label>
+        <ns-boarding-list></ns-boarding-list>
     </StackLayout>
 </ScrollView>
