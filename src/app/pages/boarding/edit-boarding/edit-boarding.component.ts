@@ -3,7 +3,7 @@ import { Page } from 'tns-core-modules/ui/page/page';
 import { DateRange } from 'nativescript-ui-calendar';
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet/angular';
 
-import { PageBase } from '../../../shared/helpers/classes/page-base';
+import { PageBase } from '../../../shared/classes/page-base';
 import { DatePickerSheetComponent } from '../../../shared/components/date-picker/date-picker-sheet/date-picker-sheet.component';
 import { SheetService } from '../../../shared/services/sheet.service';
 

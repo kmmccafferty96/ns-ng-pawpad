@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { Routes } from '@angular/router';
 
-import { PageURL } from '../shared/helpers/enums/page-url.enum';
+import { PageURL } from '../shared/enums/page-url.enum';
 import { PagesComponent } from './pages.component';
 
 const routes: Routes = [

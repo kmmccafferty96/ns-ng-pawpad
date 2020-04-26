@@ -9,7 +9,7 @@ import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material
 
 import { SideDrawerService } from '../shared/services/side-drawer.service';
 import { AuthService } from '../auth/auth.service';
-import { PageURL } from '../shared/helpers/enums/page-url.enum';
+import { PageURL } from '../shared/enums/page-url.enum';
 import { Acting } from '../shared/decorators/acting.decorator';
 import { Loading } from '../shared/decorators/loading.decorator';
 
