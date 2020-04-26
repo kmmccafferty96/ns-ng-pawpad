@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Boarding } from '../../../models/boarding.interface';
+import { Boarding } from '../../../models/boarding.model';
 import { BoardingService } from '../../../services/boarding.service';
 
 /** Component that displays a boarding card */

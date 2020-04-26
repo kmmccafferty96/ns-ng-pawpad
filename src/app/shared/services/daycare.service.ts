@@ -5,7 +5,7 @@ import * as moment from 'moment';
 
 import { DialogService } from './dialog.service';
 import { SnackBarService } from './snackbar.service';
-import { Daycare } from '../models/daycare.interface';
+import { Daycare } from '../models/daycare.model';
 import { HttpStatusInterceptor } from './http-status-interceptor.service';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../models/user.model';

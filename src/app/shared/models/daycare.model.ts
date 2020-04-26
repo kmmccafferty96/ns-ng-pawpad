@@ -1,5 +1,5 @@
 import { Moment } from 'moment';
-import { Dog } from './dog.interface';
+import { Dog } from './dog.model';
 
 export interface Daycare {
     userId: string;

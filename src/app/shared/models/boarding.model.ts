@@ -1,4 +1,4 @@
-import { Dog } from './dog.interface';
+import { Dog } from './dog.model';
 import { Moment } from 'moment';
 
 export interface Boarding {

@@ -6,7 +6,7 @@ import * as moment from 'moment';
 
 import { DialogService } from './dialog.service';
 import { PageURL } from '../helpers/enums/page-url.enum';
-import { Boarding } from '../models/boarding.interface';
+import { Boarding } from '../models/boarding.model';
 import { HttpStatusInterceptor } from './http-status-interceptor.service';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../models/user.model';

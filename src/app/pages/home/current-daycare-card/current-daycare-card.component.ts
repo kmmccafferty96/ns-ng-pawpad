@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Daycare } from '../../../shared/models/daycare.interface';
+import { Daycare } from '../../../shared/models/daycare.model';
 import { DaycareService } from '../../../shared/services/daycare.service';
 
 /** Component that displays a current daycare card */

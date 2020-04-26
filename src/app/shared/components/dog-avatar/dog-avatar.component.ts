@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Dog } from '../../models/dog.interface';
+import { Dog } from '../../models/dog.model';
 
 /** Component for showing a dog avatar */
 @Component({
