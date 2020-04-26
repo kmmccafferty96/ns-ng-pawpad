@@ -1,18 +1,23 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptCommonModule } from 'nativescript-angular/common';
-import { NativeScriptRouterModule } from 'nativescript-angular/router';
+import { NativeScriptUICalendarModule } from 'nativescript-ui-calendar/angular';
 
+import { BoardingRoutingModule } from './boarding-routing.module';
+import { AppCommonModule } from '../../shared/app-common.module';
+import { SharedComponentsModule } from '../../shared/shared-components.module';
+import { DatePickerModule } from '../../shared/components/date-picker/date-picker.module';
 import { BoardingComponent } from './boarding.component';
-import { SharedModule } from '../../shared/shared.module';
-import { DateTimeModule } from '../../shared/components/date-time-pickers/date-time.module';
+import { EditBoardingComponent } from './edit-boarding/edit-boarding.component';
 
 @NgModule({
-    declarations: [BoardingComponent],
+    declarations: [BoardingComponent, EditBoardingComponent],
     imports: [
         NativeScriptCommonModule,
-        NativeScriptRouterModule.forChild([{ path: '', component: BoardingComponent }]),
-        SharedModule,
-        DateTimeModule,
+        BoardingRoutingModule,
+        AppCommonModule,
+        SharedComponentsModule,
+        NativeScriptUICalendarModule,
+        DatePickerModule,
     ],
     schemas: [NO_ERRORS_SCHEMA],
 })

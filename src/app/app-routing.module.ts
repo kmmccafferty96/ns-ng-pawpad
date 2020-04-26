@@ -13,7 +13,7 @@ const routes: Routes = [
     {
         path: 'pages',
         loadChildren: () => import('~/app/pages/pages.module').then((m) => m.PagesModule),
-        //canLoad: [AuthGuard]
+        canLoad: [AuthGuard],
     },
 ];
 

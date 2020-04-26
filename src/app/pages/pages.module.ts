@@ -4,9 +4,9 @@ import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angul
 import { NativeScriptMaterialBottomNavigationBarModule } from 'nativescript-material-bottomnavigationbar/angular';
 import { NativeScriptMaterialActivityIndicatorModule } from 'nativescript-material-activityindicator/angular';
 
+import { AppCommonModule } from '../shared/app-common.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
-import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [PagesComponent],
@@ -16,7 +16,7 @@ import { SharedModule } from '../shared/shared.module';
         NativeScriptUISideDrawerModule,
         NativeScriptMaterialBottomNavigationBarModule,
         NativeScriptMaterialActivityIndicatorModule,
-        SharedModule,
+        AppCommonModule,
     ],
     schemas: [NO_ERRORS_SCHEMA],
 })

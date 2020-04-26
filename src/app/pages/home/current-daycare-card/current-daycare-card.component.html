@@ -5,8 +5,8 @@
         </StackLayout>
         <MDButton
             class="md-btn pickup-btn"
-            [ngClass]="{ 'md-btn-cancel': pickupStatus }"
-            [text]="!pickupStatus ? 'On My Way' : 'Cancel'"
+            [ngClass]="{ 'md-btn-cancel': currentDaycare.pickupStatus }"
+            [text]="!currentDaycare.pickupStatus ? 'On My Way' : 'Cancel'"
             (tap)="togglePickupStatus()"
         ></MDButton>
     </FlexboxLayout>

@@ -1,77 +1,98 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { action } from 'tns-core-modules/ui/dialogs/dialogs';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import * as moment from 'moment';
 
-import { PagesModule } from '../../pages/pages.module';
 import { DialogService } from './dialog.service';
 import { PageURL } from '../helpers/enums/page-url.enum';
 import { Boarding } from '../models/boarding.interface';
 import { HttpStatusInterceptor } from './http-status-interceptor.service';
+import { AuthService } from '../../auth/auth.service';
+import { User } from '../models/user.model';
 
-@Injectable({ providedIn: PagesModule })
-export class BoardingService {
+@Injectable({ providedIn: 'root' })
+export class BoardingService implements OnDestroy {
     simulatedDelay = 600;
 
-    private _boardingsSub$ = new BehaviorSubject<Boarding[]>(null);
+    private _loggedInUserSub: Subscription;
+    loggedInUser: User;
 
-    boardings$ = this._boardingsSub$.asObservable().pipe();
+    private _loggedInUserBoardingsSub$ = new BehaviorSubject<Boarding[]>(undefined);
+    loggedInUserBoardings$ = this._loggedInUserBoardingsSub$.asObservable().pipe();
 
     constructor(
         private _router: RouterExtensions,
         private _dialogService: DialogService,
-        private _httpStatusInterceptor: HttpStatusInterceptor
-    ) {}
+        private _httpStatusInterceptor: HttpStatusInterceptor,
+        private _authService: AuthService
+    ) {
+        this._loggedInUserSub = this._authService.user.subscribe((user) => {
+            this.loggedInUser = user;
+            this.setLoggedInUserBoardings();
+        });
+    }
 
-    getBoardings() {
-        // TODO (HTTP) - get current daycare
+    setLoggedInUserBoardings(): void {
+        if (!this.loggedInUser) {
+            this._loggedInUserBoardingsSub$.next(undefined);
+            return;
+        }
 
         // Emit mock data
         this._httpStatusInterceptor.changeStatus(true, 'GET');
         setTimeout(() => {
-            this._boardingsSub$.next([
-                {
-                    userId: '',
-                    dogs: [
-                        {
-                            id: '',
-                            name: 'Bailey',
-                            imageUrl:
-                                'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-dog-captions-1563456605.jpg?crop=0.747xw:1.00xh;0.0459xw,0&resize=480:*',
-                        },
-                        {
-                            id: '',
-                            name: 'Berkeley',
-                            imageUrl:
-                                'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-laying-on-grass-high-res-stock-photography-1574096636.jpg?crop=0.722xw:1.00xh;0.140xw,0&resize=640:*',
-                        },
-                    ],
-                    startDate: moment('Sun Mar 29 2020'),
-                    endDate: moment('Wed Apr 1 2020'),
-                },
-                {
-                    userId: '',
-                    dogs: [
-                        {
-                            id: '',
-                            name: 'Bailey',
-                            imageUrl:
-                                'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-dog-captions-1563456605.jpg?crop=0.747xw:1.00xh;0.0459xw,0&resize=480:*',
-                        },
-                        {
-                            id: '',
-                            name: 'Berkeley',
-                            imageUrl:
-                                'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-laying-on-grass-high-res-stock-photography-1574096636.jpg?crop=0.722xw:1.00xh;0.140xw,0&resize=640:*',
-                        },
-                    ],
-                    startDate: moment('Sun Apr 5 2020'),
-                    endDate: moment('Wed Apr 8 2020'),
-                },
-            ]);
+            this._loggedInUserBoardingsSub$.next(this.getUserBoardings(this.loggedInUser));
             this._httpStatusInterceptor.changeStatus(false, 'GET');
         }, this.simulatedDelay);
+    }
+
+    getUserBoardings(user: User): Boarding[] {
+        if (!user) {
+            throw Error('No user was specified.');
+        }
+
+        // TODO (HTTP) - get user boardings
+        return [
+            {
+                userId: '',
+                dogs: [
+                    {
+                        id: '',
+                        name: 'Bailey',
+                        imageUrl:
+                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-dog-captions-1563456605.jpg?crop=0.747xw:1.00xh;0.0459xw,0&resize=480:*',
+                    },
+                    {
+                        id: '',
+                        name: 'Berkeley',
+                        imageUrl:
+                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-laying-on-grass-high-res-stock-photography-1574096636.jpg?crop=0.722xw:1.00xh;0.140xw,0&resize=640:*',
+                    },
+                ],
+                startDate: moment(new Date('Sun Mar 29 2020')),
+                endDate: moment(new Date('Wed Apr 1 2020')),
+            },
+            {
+                userId: '',
+                dogs: [
+                    {
+                        id: '',
+                        name: 'Bailey',
+                        imageUrl:
+                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-dog-captions-1563456605.jpg?crop=0.747xw:1.00xh;0.0459xw,0&resize=480:*',
+                    },
+                    {
+                        id: '',
+                        name: 'Berkeley',
+                        imageUrl:
+                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-laying-on-grass-high-res-stock-photography-1574096636.jpg?crop=0.722xw:1.00xh;0.140xw,0&resize=640:*',
+                    },
+                ],
+                startDate: moment(new Date('Sun Apr 5 2020')),
+                endDate: moment(new Date('Wed Apr 8 2020')),
+            },
+        ];
     }
 
     async showBoardingActionsAsync(boarding: Boarding) {
@@ -85,7 +106,9 @@ export class BoardingService {
 
         switch (response) {
             case 'Edit Boarding': {
-                this._router.navigateByUrl(`/pages/${PageURL.Boarding}`, { clearHistory: true });
+                this._router.navigate([`/pages/${PageURL.Boarding}/edit`, '55'], {
+                    transition: { name: 'slide' },
+                });
                 break;
             }
             case 'Cancel Boarding': {
@@ -113,5 +136,11 @@ export class BoardingService {
             okButtonText: 'Yes, cancel',
             cancelButtonText: 'No',
         });
+    }
+
+    ngOnDestroy(): void {
+        if (this._loggedInUserSub) {
+            this._loggedInUserSub.unsubscribe();
+        }
     }
 }

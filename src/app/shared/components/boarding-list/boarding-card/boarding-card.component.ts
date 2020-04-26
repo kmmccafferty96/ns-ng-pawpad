@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Boarding } from '../../../../shared/models/boarding.interface';
-import { BoardingService } from '../../../../shared/services/boarding.service';
+import { Boarding } from '../../../models/boarding.interface';
+import { BoardingService } from '../../../services/boarding.service';
 
 /** Component that displays a boarding card */
 @Component({

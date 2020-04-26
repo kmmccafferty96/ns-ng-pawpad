@@ -1,7 +1,18 @@
 @import '../../../../theme/colors';
+@import '../../../../theme/fonts';
 
 ActionBar {
     background: $action-bar;
     color: darken($secondary, 25%);
     width: 100%;
+    margin: 0;
+}
+
+.title {
+    @extend .font-600;
+    font-size: 18;
+}
+
+.ios-menu-icon {
+    font-size: 18;
 }

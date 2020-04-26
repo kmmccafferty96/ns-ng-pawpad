@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { BoardingService } from '../../../shared/services/boarding.service';
-import { Boarding } from '../../../shared/models/boarding.interface';
+import { BoardingService } from '../../services/boarding.service';
+import { Boarding } from '../../models/boarding.interface';
 
 /** Component that displays upcoming boarding in a list */
 @Component({
@@ -16,10 +16,8 @@ export class BoardingList implements OnDestroy {
     boardings: Boarding[];
 
     constructor(private _boardingService: BoardingService) {
-        this._boardingService.getBoardings();
-
-        this._boardingsSub = this._boardingService.boardings$.subscribe((val) => {
-            this.boardings = val;
+        this._boardingsSub = this._boardingService.loggedInUserBoardings$.subscribe((boardings) => {
+            this.boardings = boardings;
         });
     }
 
