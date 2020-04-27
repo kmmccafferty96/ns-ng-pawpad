@@ -7,18 +7,18 @@ export class SnackBarService {
     private _snackBar = new SnackBar();
 
     /** Displays a Snack Bar with a simple message and no action. */
-    async showSimpleSnackBar(
+    showSimpleSnackBar(
         message: string,
         textColor?: string,
         backgroundColor?: string,
         maxLines?: number,
         isRTL?: boolean
     ): Promise<any> {
-        return await this._snackBar.simple(message, textColor, backgroundColor, maxLines, isRTL);
+        return this._snackBar.simple(message, textColor, backgroundColor, maxLines, isRTL);
     }
 
     /** Displays a Snack Bar with an action button. */
-    async showActionSnackBar(options: SnackBarOptions): Promise<any> {
-        return await this._snackBar.action(options);
+    showActionSnackBar(options: SnackBarOptions): Promise<any> {
+        return this._snackBar.action(options);
     }
 }
