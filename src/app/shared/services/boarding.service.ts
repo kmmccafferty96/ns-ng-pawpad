@@ -2,7 +2,6 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { action } from 'tns-core-modules/ui/dialogs/dialogs';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import * as moment from 'moment';
 
 import { DialogService } from './dialog.service';
 import { PageURL } from '../enums/page-url.enum';
@@ -10,6 +9,7 @@ import { Boarding } from '../models/boarding.model';
 import { HttpStatusInterceptor } from './http-status-interceptor.service';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../models/user.model';
+import { boardings } from '../mock-data/boarding.data';
 
 @Injectable({ providedIn: 'root' })
 export class BoardingService implements OnDestroy {
@@ -53,46 +53,7 @@ export class BoardingService implements OnDestroy {
         }
 
         // TODO (HTTP) - get user boardings
-        return [
-            {
-                userId: '',
-                dogs: [
-                    {
-                        id: '',
-                        name: 'Bailey',
-                        imageUrl:
-                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-dog-captions-1563456605.jpg?crop=0.747xw:1.00xh;0.0459xw,0&resize=480:*',
-                    },
-                    {
-                        id: '',
-                        name: 'Berkeley',
-                        imageUrl:
-                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-laying-on-grass-high-res-stock-photography-1574096636.jpg?crop=0.722xw:1.00xh;0.140xw,0&resize=640:*',
-                    },
-                ],
-                startDate: moment(new Date('Sun Mar 29 2020')),
-                endDate: moment(new Date('Wed Apr 1 2020')),
-            },
-            {
-                userId: '',
-                dogs: [
-                    {
-                        id: '',
-                        name: 'Bailey',
-                        imageUrl:
-                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-dog-captions-1563456605.jpg?crop=0.747xw:1.00xh;0.0459xw,0&resize=480:*',
-                    },
-                    {
-                        id: '',
-                        name: 'Berkeley',
-                        imageUrl:
-                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-laying-on-grass-high-res-stock-photography-1574096636.jpg?crop=0.722xw:1.00xh;0.140xw,0&resize=640:*',
-                    },
-                ],
-                startDate: moment(new Date('Sun Apr 5 2020')),
-                endDate: moment(new Date('Wed Apr 8 2020')),
-            },
-        ];
+        return boardings;
     }
 
     async showBoardingActionsAsync(boarding: Boarding) {
