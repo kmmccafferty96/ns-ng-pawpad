@@ -50,7 +50,7 @@
         "nativescript-dev-webpack": "^1.5.1",
         "node-sass": "^4.14.0",
         "prettier": "^2.0.5",
-        "tslint": "^6.1.1",
+        "tslint": "^6.1.2",
         "typescript": "~3.5.3"
     },
     "gitHead": "f28dbc60d74dd2cef4b645afd8fdd63bbb12c73e",
