@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page/page';
 
 import { PageBase } from '../../shared/classes/page-base';
 import { BoardingFacadeService } from './boarding-facade.service';
+import { Boarding } from '../../shared/models/boarding.model';
 
 /** Component for the main boarding page. */
 @Component({
@@ -17,5 +18,9 @@ export class BoardingComponent extends PageBase {
     constructor(page: Page, private _facadeService: BoardingFacadeService) {
         super(page);
         this._facadeService.fetchBoardings();
+    }
+
+    onBoardingCancel(boarding: Boarding) {
+        this._facadeService.cancelBoarding(boarding.id);
     }
 }

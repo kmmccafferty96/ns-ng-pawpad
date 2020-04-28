@@ -9,7 +9,10 @@
         <Label class="h2 section-heading" text="Current Daycare"></Label>
         <ns-current-daycare-card></ns-current-daycare-card>
         <Label class="h2 section-heading" text="Upcoming Boarding"></Label>
-        <ns-boarding-list [boardings]="boardings$ | async"></ns-boarding-list>
+        <ns-boarding-list
+            [boardings]="boardings$ | async"
+            (boardingCancel)="onBoardingCancel($event)"
+        ></ns-boarding-list>
         <MDButton
             class="md-btn schedule-btn"
             text="Schedule Boarding"

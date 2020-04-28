@@ -36,6 +36,12 @@ export class BoardingFacadeService implements OnDestroy {
         });
     }
 
+    cancelBoarding(boardingId: string): void {
+        this._boardingService.cancelBoarding(boardingId).subscribe(() => {
+            this._store.dispatch(new UserBoarding.CancelFromBoarding(boardingId));
+        });
+    }
+
     // #endregion
 
     ngOnDestroy(): void {

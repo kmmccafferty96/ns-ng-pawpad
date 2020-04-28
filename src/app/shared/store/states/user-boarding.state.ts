@@ -25,15 +25,38 @@ export class UserBoardingState {
         return Object.values(state.boardings);
     }
 
+    /**
+     * Sets the user boardings to the passed in Boarding array.
+     * @param ctx
+     * @param action
+     */
     @Action(UserBoarding.InitializeFromHome)
     @Action(UserBoarding.InitializeFromBoarding)
-    setUserBoardings(
+    initializeUserBoardings(
         ctx: StateContext<UserBoardingStateModel>,
         action: UserBoarding.InitializeFromHome | UserBoarding.InitializeFromBoarding
     ) {
         ctx.setState(
             produce((draft: UserBoardingStateModel) => {
                 draft.boardings = arrayToObject(action.boardings, 'id') || {};
+            })
+        );
+    }
+
+    /**
+     * Cancels (deletes from store) a boarding based on the passed in id.
+     * @param ctx
+     * @param action
+     */
+    @Action(UserBoarding.CancelFromHome)
+    @Action(UserBoarding.CancelFromBoarding)
+    cancelUserBoarding(
+        ctx: StateContext<UserBoardingStateModel>,
+        action: UserBoarding.CancelFromHome | UserBoarding.CancelFromBoarding
+    ) {
+        ctx.setState(
+            produce((draft: UserBoardingStateModel) => {
+                delete draft.boardings[action.id];
             })
         );
     }

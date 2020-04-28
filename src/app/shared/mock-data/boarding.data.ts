@@ -3,8 +3,8 @@ import * as moment from 'moment';
 
 export const boardings: Boarding[] = [
     {
-        id: '',
-        userId: '',
+        id: '1',
+        userId: '1',
         dogs: [
             {
                 id: '',
@@ -23,8 +23,8 @@ export const boardings: Boarding[] = [
         endDate: moment(new Date('Wed Apr 1 2020')),
     },
     {
-        id: '',
-        userId: '',
+        id: '2',
+        userId: '1',
         dogs: [
             {
                 id: '',

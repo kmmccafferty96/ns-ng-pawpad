@@ -3,6 +3,7 @@ import { Page } from 'tns-core-modules/ui/page/page';
 
 import { PageBase } from '../../shared/classes/page-base';
 import { HomeFacadeService } from './home-facade.service';
+import { Boarding } from '../../shared/models/boarding.model';
 
 @Component({
     selector: 'ns-home',
@@ -16,5 +17,9 @@ export class HomeComponent extends PageBase {
     constructor(page: Page, private _facadeService: HomeFacadeService) {
         super(page);
         this._facadeService.fetchBoardings();
+    }
+
+    onBoardingCancel(boarding: Boarding) {
+        this._facadeService.cancelBoarding(boarding.id);
     }
 }
