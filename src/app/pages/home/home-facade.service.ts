@@ -32,13 +32,13 @@ export class HomeFacadeService implements OnDestroy {
 
     fetchBoardings(): void {
         this._boardingService.fetchBoardings(this.loggedInUser.id).subscribe((boardings) => {
-            this._store.dispatch(new UserBoarding.InitializeFromBoarding(boardings));
+            this._store.dispatch(new UserBoarding.InitializeFromHome(boardings));
         });
     }
 
     cancelBoarding(boardingId: string): void {
         this._boardingService.cancelBoarding(boardingId).subscribe(() => {
-            this._store.dispatch(new UserBoarding.CancelFromBoarding(boardingId));
+            this._store.dispatch(new UserBoarding.CancelFromHome(boardingId));
         });
     }
 
