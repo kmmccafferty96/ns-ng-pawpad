@@ -12,12 +12,12 @@ import { DialogService } from '../../services/dialog.service';
     templateUrl: './boarding-list.component.html',
     styleUrls: ['./boarding-list.component.scss'],
 })
-export class BoardingList {
+export class BoardingListComponent {
     /** Array of Boarding objects to display in the list. */
-    @Input() public boardings: Boarding[] = [];
+    @Input() boardings: Boarding[] = [];
 
     /** EventEmitter emitted when the user attempts to cancel a boarding. */
-    @Output() public boardingCancel = new EventEmitter<Boarding>();
+    @Output() boardingCancel = new EventEmitter<Boarding>();
 
     constructor(private _router: RouterExtensions, private _dialogService: DialogService) {}
 

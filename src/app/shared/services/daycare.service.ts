@@ -1,7 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Moment } from 'moment';
-import * as moment from 'moment';
 
 import { DialogService } from './dialog.service';
 import { SnackBarService } from './snackbar.service';
@@ -36,6 +34,7 @@ export class DaycareService implements OnDestroy {
     setLoggedInUserCurrentDaycare(): void {
         if (!this.loggedInUser) {
             this._loggedInUserCurrentDaycareSub$.next(undefined);
+
             return;
         }
 
@@ -83,8 +82,8 @@ export class DaycareService implements OnDestroy {
         }, this.simulatedDelay);
     }
 
-    private async confirmCancelAsync() {
-        return await this._dialogService.showConfirm({
+    private confirmCancelAsync() {
+        return this._dialogService.showConfirm({
             title: 'Cancel Pickup?',
             message:
                 'Are you sure you want to cancel your pickup? This status is used to let us know when you are on your way to pickup your dog(s).',

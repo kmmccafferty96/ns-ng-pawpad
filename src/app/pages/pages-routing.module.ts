@@ -31,7 +31,7 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('~/app/pages/our-services/our-services.module').then((m) => m.OurServicesModule),
             },
-            //{ path: "**", redirectTo: "/pages/home", pathMatch: "full" }
+            // { path: "**", redirectTo: "/pages/home", pathMatch: "full" }
         ],
     },
 ];

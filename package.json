@@ -22,6 +22,7 @@
         "@angular/router": "~8.2.0",
         "@nativescript/theme": "^2.3.3",
         "@ngxs/store": "^3.6.2",
+        "codelyzer": "^5.2.2",
         "immer": "^6.0.3",
         "moment": "^2.24.0",
         "nativescript-angular": "^8.21.0",

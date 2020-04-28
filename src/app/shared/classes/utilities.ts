@@ -9,8 +9,10 @@ export function arrayToObject(array: object[], keyField: string): any {
     if (array) {
         result = array.reduce((obj, item) => {
             obj[item[keyField]] = item;
+
             return obj;
         }, {});
     }
+
     return result;
 }

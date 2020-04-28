@@ -10,7 +10,7 @@ import { DaycareService } from '../../../shared/services/daycare.service';
     templateUrl: './current-daycare-card.component.html',
     styleUrls: ['./current-daycare-card.component.scss'],
 })
-export class CurrentDaycareCard implements OnDestroy {
+export class CurrentDaycareCardComponent implements OnDestroy {
     private _currentDaycareSub: Subscription;
 
     /** Current Daycare for the logged in user */

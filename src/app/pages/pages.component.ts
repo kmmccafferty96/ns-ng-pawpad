@@ -92,7 +92,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         const prevUrl = this.cleanRouteString(this._router.router.url);
         const newUrl = this._pageIndexMap[event.newIndex];
 
-        if (prevUrl != newUrl) {
+        if (prevUrl !== newUrl) {
             this.navigate(newUrl);
         }
     }
@@ -115,6 +115,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
      * This method doesn't do a whole lot - nothing actually. It's called on the tap event of
      * the GridLayout as a workaround to suppress any clicks behind it on Android.
      */
+    // tslint:disable-next-line: no-empty
     doNothing() {}
 
     private selectTabByRouteString(route: string) {

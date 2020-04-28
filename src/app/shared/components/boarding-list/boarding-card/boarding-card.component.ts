@@ -7,12 +7,12 @@ import { Boarding } from '../../../models/boarding.model';
     templateUrl: './boarding-card.component.html',
     styleUrls: ['./boarding-card.component.scss'],
 })
-export class BoardingCard {
+export class BoardingCardComponent {
     /** Boarding object to display on a card */
-    @Input() public boarding: Boarding;
+    @Input() boarding: Boarding;
 
     /** Event emitted when the boarding card is clicked. */
-    @Output() public boardingTap = new EventEmitter<Boarding>();
+    @Output() boardingTap = new EventEmitter<Boarding>();
 
     /** Boarding card tapped event handler. */
     onBoardingTap() {
