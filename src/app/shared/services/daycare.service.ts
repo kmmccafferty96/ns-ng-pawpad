@@ -28,7 +28,6 @@ export class DaycareService implements OnDestroy {
         private _authService: AuthService
     ) {
         this._loggedInUserSub = this._authService.user.subscribe((user) => {
-            console.log('USER S: ' + user);
             this.loggedInUser = user;
             this.setLoggedInUserCurrentDaycare();
         });

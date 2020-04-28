@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Page } from 'tns-core-modules/ui/page/page';
 
 import { PageBase } from '../../shared/classes/page-base';
+import { BoardingFacadeService } from './boarding-facade.service';
 
+/** Component for the main boarding page. */
 @Component({
     selector: 'ns-boarding',
     templateUrl: './boarding.component.html',
     styleUrls: ['./boarding.component.scss'],
 })
-export class BoardingComponent extends PageBase {}
+export class BoardingComponent extends PageBase {
+    /** UserBoardings stream */
+    boardings$ = this._facadeService.userBoardings$;
+
+    constructor(page: Page, private _facadeService: BoardingFacadeService) {
+        super(page);
+        this._facadeService.fetchBoardings();
+    }
+}
