@@ -4,12 +4,14 @@ import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { NativeScriptMaterialBottomSheetModule } from 'nativescript-material-bottomsheet/angular';
 import { themer } from 'nativescript-material-core';
+import { NgxsModule } from '@ngxs/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpStatusService } from './shared/services/http-status.service';
 import { HttpStatusInterceptor } from './shared/services/http-status-interceptor.service';
 import { setRootInjector } from './shared/services/root-injector';
+import { ngxsConfig } from '../../ngxs.config';
 
 import * as imageModule from 'nativescript-image';
 import * as applicationModule from 'tns-core-modules/application';
@@ -34,6 +36,7 @@ if (applicationModule.android) {
         AppRoutingModule,
         NativeScriptHttpClientModule,
         NativeScriptMaterialBottomSheetModule.forRoot(),
+        NgxsModule.forRoot([], ngxsConfig),
     ],
     declarations: [AppComponent],
     providers: [

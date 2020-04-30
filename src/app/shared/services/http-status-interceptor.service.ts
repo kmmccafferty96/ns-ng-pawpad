@@ -14,12 +14,15 @@ export class HttpStatusInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         this.changeStatus(true, req.method);
+
         return next.handle(req.clone()).pipe(
             catchError((e) => {
                 if (e.status === 400) {
                     this.httpStatusService.validationErrors = e.error.validationErrors;
+
                     return NEVER;
                 }
+
                 return throwError(e);
             }),
             finalize(() => {

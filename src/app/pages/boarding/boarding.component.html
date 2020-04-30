@@ -2,6 +2,9 @@
 <ScrollView class="page-content">
     <StackLayout>
         <Label class="h2 section-heading" text="Upcoming Boarding"></Label>
-        <ns-boarding-list></ns-boarding-list>
+        <ns-boarding-list
+            [boardings]="boardings$ | async"
+            (boardingCancel)="onBoardingCancel($event)"
+        ></ns-boarding-list>
     </StackLayout>
 </ScrollView>

@@ -9,7 +9,7 @@ import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material
 
 import { SideDrawerService } from '../shared/services/side-drawer.service';
 import { AuthService } from '../auth/auth.service';
-import { PageURL } from '../shared/helpers/enums/page-url.enum';
+import { PageURL } from '../shared/enums/page-url.enum';
 import { Acting } from '../shared/decorators/acting.decorator';
 import { Loading } from '../shared/decorators/loading.decorator';
 
@@ -92,7 +92,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         const prevUrl = this.cleanRouteString(this._router.router.url);
         const newUrl = this._pageIndexMap[event.newIndex];
 
-        if (prevUrl != newUrl) {
+        if (prevUrl !== newUrl) {
             this.navigate(newUrl);
         }
     }
@@ -115,6 +115,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
      * This method doesn't do a whole lot - nothing actually. It's called on the tap event of
      * the GridLayout as a workaround to suppress any clicks behind it on Android.
      */
+    // tslint:disable-next-line: no-empty
     doNothing() {}
 
     private selectTabByRouteString(route: string) {

@@ -1,5 +1,9 @@
 <StackLayout *ngIf="boardings && boardings.length > 0">
-    <ns-boarding-card *ngFor="let boarding of boardings" [boarding]="boarding"></ns-boarding-card>
+    <ns-boarding-card
+        *ngFor="let boarding of boardings"
+        [boarding]="boarding"
+        (boardingTap)="showBoardingActions($event)"
+    ></ns-boarding-card>
 </StackLayout>
 <MDCardView *ngIf="!(boardings && boardings.length > 0)" class="md-card">
     <StackLayout class="center" style="height: 89;">

@@ -13,13 +13,14 @@ export class AuthGuard implements CanLoad {
     canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
         return this.authService.user.pipe(
             take(1),
-            switchMap(currentUser => {
+            switchMap((currentUser) => {
                 if (!currentUser || !currentUser.token) {
                     return this.authService.autoLogin();
                 }
+
                 return of(true);
             }),
-            tap(isAuth => {
+            tap((isAuth) => {
                 if (!isAuth) {
                     this.router.navigate(['/auth']);
                 }

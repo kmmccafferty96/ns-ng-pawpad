@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { PageBase } from '../../shared/helpers/classes/page-base';
+import { PageBase } from '../../shared/classes/page-base';
 
 @Component({
     selector: 'ns-our-services',

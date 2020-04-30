@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { isAndroid } from 'tns-core-modules/platform';
 import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -12,14 +12,12 @@ declare var android: any;
     templateUrl: './action-bar.component.html',
     styleUrls: ['./action-bar.component.scss'],
 })
-export class ActionBarComponent implements OnInit {
+export class ActionBarComponent {
     @Input() title: string;
     @Input() showBackButton = true;
     @Input() hasMenu = true;
 
     constructor(private page: Page, private router: RouterExtensions, private uiService: SideDrawerService) {}
-
-    ngOnInit() {}
 
     get android() {
         return isAndroid;
@@ -37,7 +35,7 @@ export class ActionBarComponent implements OnInit {
         if (isAndroid) {
             const androidToolbar = this.page.actionBar.nativeView;
             const backButton = androidToolbar.getNavigationIcon();
-            let color = '#000000';
+            const color = '#000000';
             if (backButton) {
                 backButton.setColorFilter(
                     android.graphics.Color.parseColor(color),

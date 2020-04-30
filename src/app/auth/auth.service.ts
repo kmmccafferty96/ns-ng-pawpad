@@ -36,20 +36,21 @@ export class AuthService {
         return this.http
             .post<AuthResponseData>(
                 `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,
-                { email: email, password: password, returnSecureToken: true }
+                { email, password, returnSecureToken: true }
             )
             .pipe(
-                catchError(errorResponse => {
+                catchError((errorResponse) => {
                     this.handleError(errorResponse.error.error.message);
+
                     return throwError(errorResponse);
                 }),
-                tap(response => {
+                tap((response) => {
                     if (response && response.idToken) {
                         this.handleLogin(
                             response.email,
                             response.localId,
                             response.idToken,
-                            parseInt(response.expiresIn)
+                            parseInt(response.expiresIn, 10)
                         );
                     }
                 })
@@ -60,20 +61,21 @@ export class AuthService {
         return this.http
             .post<AuthResponseData>(
                 `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`,
-                { email: email, password: password, returnSecureToken: true }
+                { email, password, returnSecureToken: true }
             )
             .pipe(
-                catchError(errorResponse => {
+                catchError((errorResponse) => {
                     this.handleError(errorResponse.error.error.message);
+
                     return throwError(errorResponse);
                 }),
-                tap(response => {
+                tap((response) => {
                     if (response && response.idToken) {
                         this.handleLogin(
                             response.email,
                             response.localId,
                             response.idToken,
-                            parseInt(response.expiresIn)
+                            parseInt(response.expiresIn, 10)
                         );
                     }
                 })
@@ -111,6 +113,7 @@ export class AuthService {
         if (loadedUser.isAuth) {
             this._user.next(loadedUser);
             this.autoLogout(loadedUser.timeToExpiry);
+
             return of(true);
         }
 

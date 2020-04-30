@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Dog } from '../../models/dog.interface';
+import { Dog } from '../../models/dog.model';
 
 /** Component for showing a dog avatar */
 @Component({
@@ -9,8 +9,8 @@ import { Dog } from '../../models/dog.interface';
 })
 export class DogAvatarComponent {
     /** The dog object to display as an avatar */
-    @Input() public dog: Dog;
+    @Input() dog: Dog;
 
     /** The size (height and width) of the avatar */
-    @Input() public size = 50;
+    @Input() size = 50;
 }

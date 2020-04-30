@@ -18,27 +18,27 @@ import {
 @Injectable({ providedIn: 'root' })
 export class DialogService {
     /** Displays a simple alert dialog. */
-    async showAlert(options: AlertOptions): Promise<void> {
-        return await alert(options);
+    showAlert(options: AlertOptions): Promise<void> {
+        return alert(options);
     }
 
     /** Displays a confirmation dialog. */
-    async showConfirm(options: ConfirmOptions): Promise<boolean> {
-        return await confirm(options);
+    showConfirm(options: ConfirmOptions): Promise<boolean> {
+        return confirm(options);
     }
 
     /** Displays a prompt dialog. */
-    async showPrompt(options: PromptOptions): Promise<PromptResult> {
-        return await prompt(options);
+    showPrompt(options: PromptOptions): Promise<PromptResult> {
+        return prompt(options);
     }
 
     /** Displays a login dialog. */
-    async showLogin(options: LoginOptions): Promise<LoginResult> {
-        return await login(options);
+    showLogin(options: LoginOptions): Promise<LoginResult> {
+        return login(options);
     }
 
     /** Displays an action dialog. */
-    async showAction(options: ActionOptions): Promise<string> {
-        return await action(options);
+    showAction(options: ActionOptions): Promise<string> {
+        return action(options);
     }
 }
