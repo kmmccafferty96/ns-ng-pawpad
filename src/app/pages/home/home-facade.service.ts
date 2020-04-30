@@ -8,6 +8,10 @@ import { BoardingService } from '../../shared/services/boarding.service';
 import { UserBoardingState } from '../../shared/store/states/user-boarding.state';
 import { Boarding } from '../../shared/models/boarding.model';
 import { UserBoarding } from '../../shared/store/actions/user-boarding.actions';
+import { DaycareService } from '../../shared/services/daycare.service';
+import { Daycare } from '../../shared/models/daycare.model';
+import { UserDaycareState } from '../../shared/store/states/user-daycare.state';
+import { UserDaycare } from '../../shared/store/actions/user-daycare.actions';
 
 /** Sandbox (Facade) Service for the HomeModule. */
 @Injectable({ providedIn: 'root' })
@@ -18,8 +22,14 @@ export class HomeFacadeService implements OnDestroy {
     loggedInUser: User;
 
     @Select(UserBoardingState.getUserBoardings) userBoardings$: Observable<Boarding[]>;
+    @Select(UserDaycareState.getUserDaycare) userDaycare$: Observable<Daycare>;
 
-    constructor(private _store: Store, private _authService: AuthService, private _boardingService: BoardingService) {
+    constructor(
+        private _store: Store,
+        private _authService: AuthService,
+        private _daycareService: DaycareService,
+        private _boardingService: BoardingService
+    ) {
         // Subscribe to logged in user changes
         this._subscriptions.add(
             this._authService.user.subscribe((user) => {
@@ -27,6 +37,24 @@ export class HomeFacadeService implements OnDestroy {
             })
         );
     }
+
+    // #region DaycareService abstractions
+
+    fetchDaycare(): void {
+        this._daycareService.fetchDaycare(this.loggedInUser.id).subscribe((daycare) => {
+            this._store.dispatch(new UserDaycare.Initialize(daycare));
+        });
+    }
+
+    toggleDaycarePickupStatus(daycareId: string): void {
+        this._daycareService.togglePickupStatus(daycareId).subscribe((daycare) => {
+            let prevValue = false;
+            this.userDaycare$.subscribe((d) => (prevValue = d.pickupStatus));
+            this._store.dispatch(new UserDaycare.SetPickupStatus(!prevValue));
+        });
+    }
+
+    // #endregion
 
     // #region BoardingService abstractions
 

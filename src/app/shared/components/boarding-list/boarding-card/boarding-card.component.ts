@@ -11,7 +11,7 @@ export class BoardingCardComponent {
     /** Boarding object to display on a card */
     @Input() boarding: Boarding;
 
-    /** Event emitted when the boarding card is clicked. */
+    /** Event emitted when the boarding card is tapped. */
     @Output() boardingTap = new EventEmitter<Boarding>();
 
     /** Boarding card tapped event handler. */

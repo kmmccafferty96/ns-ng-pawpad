@@ -3,8 +3,8 @@ import * as moment from 'moment';
 
 export const daycares: Daycare[] = [
     {
-        id: '',
-        userId: '',
+        id: '1',
+        userId: '1',
         dogs: [
             {
                 id: '',

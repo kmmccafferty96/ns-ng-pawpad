@@ -7,7 +7,7 @@
             class="md-btn pickup-btn"
             [ngClass]="{ 'md-btn-cancel': currentDaycare.pickupStatus }"
             [text]="!currentDaycare.pickupStatus ? 'On My Way' : 'Cancel'"
-            (tap)="togglePickupStatus()"
+            (tap)="onTogglePickupTap()"
         ></MDButton>
     </FlexboxLayout>
     <StackLayout *ngIf="!currentDaycare" class="center" style="height: 89;">

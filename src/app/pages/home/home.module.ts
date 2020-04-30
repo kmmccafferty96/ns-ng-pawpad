@@ -8,6 +8,7 @@ import { SharedComponentsModule } from '../../shared/shared-components.module';
 import { HomeComponent } from './home.component';
 import { CurrentDaycareCardComponent } from './current-daycare-card/current-daycare-card.component';
 import { UserBoardingState } from '../../shared/store/states/user-boarding.state';
+import { UserDaycareState } from '../../shared/store/states/user-daycare.state';
 
 @NgModule({
     declarations: [HomeComponent, CurrentDaycareCardComponent],
@@ -16,7 +17,7 @@ import { UserBoardingState } from '../../shared/store/states/user-boarding.state
         NativeScriptRouterModule.forChild([{ path: '', component: HomeComponent }]),
         AppCommonModule,
         SharedComponentsModule,
-        NgxsModule.forFeature([UserBoardingState]),
+        NgxsModule.forFeature([UserBoardingState, UserDaycareState]),
     ],
     schemas: [NO_ERRORS_SCHEMA],
 })
