@@ -11,6 +11,9 @@
     "description": "NativeScript Application",
     "license": "SEE LICENSE IN <your-license-filename>",
     "repository": "<fill-your-repository-here>",
+    "scripts": {
+        "clean": "rm -rf node_modules/ platforms/ package-lock.json hooks"
+    },
     "dependencies": {
         "@angular/animations": "~8.2.0",
         "@angular/common": "~8.2.0",
