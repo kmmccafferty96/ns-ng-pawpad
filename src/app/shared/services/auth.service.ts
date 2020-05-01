@@ -6,7 +6,7 @@ import { alert } from 'tns-core-modules/ui/dialogs';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { setString, getString, hasKey, remove } from 'tns-core-modules/application-settings';
 
-import { User } from '../shared/models/user.model';
+import { User } from '../models/user.model';
 
 const FIREBASE_API_KEY = 'AIzaSyB6uxH3Ce3iwXWt93S7ktZulKCWQGugKf8';
 

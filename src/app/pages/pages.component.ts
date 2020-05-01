@@ -9,7 +9,7 @@ import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material
 import { Select } from '@ngxs/store';
 
 import { SideDrawerService } from '../shared/services/side-drawer.service';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { PageURL } from '../shared/enums/page-url.enum';
 import { ActivityStatusState } from '../shared/store/states/activity-status.state';
 

@@ -3,7 +3,7 @@ import { Subscription, Observable } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
 
 import { User } from '../../shared/models/user.model';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { BoardingService } from '../../shared/services/boarding.service';
 import { UserBoardingState } from '../../shared/store/states/user-boarding.state';
 import { Boarding } from '../../shared/models/boarding.model';

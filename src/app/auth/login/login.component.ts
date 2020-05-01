@@ -4,7 +4,7 @@ import { isAndroid } from 'tns-core-modules/platform';
 import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
 
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
     selector: 'ns-login',
@@ -44,11 +44,11 @@ export class LoginComponent implements OnInit {
 
         this.isLoading = true;
         this._authService.login(email, password).subscribe(
-            response => {
+            (response) => {
                 this.isLoading = false;
                 this._router.navigateByUrl('/pages', { clearHistory: true });
             },
-            error => {
+            (error) => {
                 this.isLoading = false;
             }
         );

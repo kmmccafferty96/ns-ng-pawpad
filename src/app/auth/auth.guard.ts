@@ -4,7 +4,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { Observable, of } from 'rxjs';
 import { take, switchMap, tap } from 'rxjs/operators';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanLoad {
