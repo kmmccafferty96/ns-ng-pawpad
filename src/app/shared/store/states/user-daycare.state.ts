@@ -3,7 +3,7 @@ import { State, StateContext, Action, Selector } from '@ngxs/store';
 import { produce } from 'immer';
 
 import { Daycare } from '../../models/daycare.model';
-import { UserDaycare } from '../actions/user-daycare.actions';
+import { UserDaycareActions } from '../actions/user-daycare.actions';
 
 export interface UserDaycareStateModel {
     daycare: Daycare;
@@ -27,8 +27,8 @@ export class UserDaycareState {
      * @param ctx
      * @param action
      */
-    @Action(UserDaycare.Initialize)
-    initializeUserDaycare(ctx: StateContext<UserDaycareStateModel>, action: UserDaycare.Initialize) {
+    @Action(UserDaycareActions.Initialize)
+    initializeUserDaycare(ctx: StateContext<UserDaycareStateModel>, action: UserDaycareActions.Initialize) {
         ctx.setState(
             produce((draft: UserDaycareStateModel) => {
                 draft.daycare = action.daycare;
@@ -42,8 +42,8 @@ export class UserDaycareState {
      * @param ctx
      * @param action
      */
-    @Action(UserDaycare.SetPickupStatus)
-    setPickupStatus(ctx: StateContext<UserDaycareStateModel>, action: UserDaycare.SetPickupStatus) {
+    @Action(UserDaycareActions.SetPickupStatus)
+    setPickupStatus(ctx: StateContext<UserDaycareStateModel>, action: UserDaycareActions.SetPickupStatus) {
         ctx.setState(
             produce((draft: UserDaycareStateModel) => {
                 draft.daycare.pickupStatus = action.status;

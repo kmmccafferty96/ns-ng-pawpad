@@ -1,5 +1,5 @@
 import { Boarding } from '../../models/boarding.model';
-export namespace UserBoarding {
+export namespace UserBoardingActions {
     // #region Initialize
 
     export class InitializeFromHome {

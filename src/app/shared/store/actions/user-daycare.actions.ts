@@ -1,5 +1,5 @@
 import { Daycare } from '../../models/daycare.model';
-export namespace UserDaycare {
+export namespace UserDaycareActions {
     export class Initialize {
         static readonly type = '[Home] InitializeUserDaycare';
         constructor(public daycare: Daycare) {}

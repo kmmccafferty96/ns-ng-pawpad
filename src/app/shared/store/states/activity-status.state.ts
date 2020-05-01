@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, StateContext, Action, Selector } from '@ngxs/store';
 import { produce } from 'immer';
-import { ActivityStatus } from '../actions/activity-status.actions';
+import { ActivityStatusActions } from '../actions/activity-status.actions';
 
 export interface ActivityStatusStateModel {
     acting: boolean;
@@ -32,8 +32,8 @@ export class ActivityStatusState {
      * @param ctx
      * @param action
      */
-    @Action(ActivityStatus.SetActingStatus)
-    setActingStatus(ctx: StateContext<ActivityStatusStateModel>, action: ActivityStatus.SetActingStatus) {
+    @Action(ActivityStatusActions.SetActingStatus)
+    setActingStatus(ctx: StateContext<ActivityStatusStateModel>, action: ActivityStatusActions.SetActingStatus) {
         ctx.setState(
             produce((draft: ActivityStatusStateModel) => {
                 draft.acting = action.status;
@@ -46,8 +46,8 @@ export class ActivityStatusState {
      * @param ctx
      * @param action
      */
-    @Action(ActivityStatus.SetLoadingStatus)
-    setLoadingStatus(ctx: StateContext<ActivityStatusStateModel>, action: ActivityStatus.SetLoadingStatus) {
+    @Action(ActivityStatusActions.SetLoadingStatus)
+    setLoadingStatus(ctx: StateContext<ActivityStatusStateModel>, action: ActivityStatusActions.SetLoadingStatus) {
         ctx.setState(
             produce((draft: ActivityStatusStateModel) => {
                 draft.loading = action.status;

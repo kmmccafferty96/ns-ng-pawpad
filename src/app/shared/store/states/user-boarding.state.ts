@@ -3,7 +3,7 @@ import { State, StateContext, Action, Selector } from '@ngxs/store';
 import { produce } from 'immer';
 
 import { Boarding } from '../../models/boarding.model';
-import { UserBoarding } from '../actions/user-boarding.actions';
+import { UserBoardingActions } from '../actions/user-boarding.actions';
 import { arrayToObject } from '../../classes/utilities';
 
 export interface UserBoardingStateModel {
@@ -30,11 +30,11 @@ export class UserBoardingState {
      * @param ctx
      * @param action
      */
-    @Action(UserBoarding.InitializeFromHome)
-    @Action(UserBoarding.InitializeFromBoarding)
+    @Action(UserBoardingActions.InitializeFromHome)
+    @Action(UserBoardingActions.InitializeFromBoarding)
     initializeUserBoardings(
         ctx: StateContext<UserBoardingStateModel>,
-        action: UserBoarding.InitializeFromHome | UserBoarding.InitializeFromBoarding
+        action: UserBoardingActions.InitializeFromHome | UserBoardingActions.InitializeFromBoarding
     ) {
         ctx.setState(
             produce((draft: UserBoardingStateModel) => {
@@ -48,11 +48,11 @@ export class UserBoardingState {
      * @param ctx
      * @param action
      */
-    @Action(UserBoarding.CancelFromHome)
-    @Action(UserBoarding.CancelFromBoarding)
+    @Action(UserBoardingActions.CancelFromHome)
+    @Action(UserBoardingActions.CancelFromBoarding)
     cancelUserBoarding(
         ctx: StateContext<UserBoardingStateModel>,
-        action: UserBoarding.CancelFromHome | UserBoarding.CancelFromBoarding
+        action: UserBoardingActions.CancelFromHome | UserBoardingActions.CancelFromBoarding
     ) {
         ctx.setState(
             produce((draft: UserBoardingStateModel) => {

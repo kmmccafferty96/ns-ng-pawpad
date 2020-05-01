@@ -7,7 +7,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { BoardingService } from '../../shared/services/boarding.service';
 import { UserBoardingState } from '../../shared/store/states/user-boarding.state';
 import { Boarding } from '../../shared/models/boarding.model';
-import { UserBoarding } from '../../shared/store/actions/user-boarding.actions';
+import { UserBoardingActions } from '../../shared/store/actions/user-boarding.actions';
 
 /** Sandbox (Facade) Service for the BoardingModule. */
 @Injectable({ providedIn: 'root' })
@@ -32,13 +32,13 @@ export class BoardingFacadeService implements OnDestroy {
 
     fetchBoardings(): void {
         this._boardingService.fetchBoardings(this.loggedInUser.id).subscribe((boardings) => {
-            this._store.dispatch(new UserBoarding.InitializeFromBoarding(boardings));
+            this._store.dispatch(new UserBoardingActions.InitializeFromBoarding(boardings));
         });
     }
 
     cancelBoarding(boardingId: string): void {
         this._boardingService.cancelBoarding(boardingId).subscribe(() => {
-            this._store.dispatch(new UserBoarding.CancelFromBoarding(boardingId));
+            this._store.dispatch(new UserBoardingActions.CancelFromBoarding(boardingId));
         });
     }
 

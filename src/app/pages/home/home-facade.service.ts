@@ -7,11 +7,11 @@ import { AuthService } from '../../shared/services/auth.service';
 import { BoardingService } from '../../shared/services/boarding.service';
 import { UserBoardingState } from '../../shared/store/states/user-boarding.state';
 import { Boarding } from '../../shared/models/boarding.model';
-import { UserBoarding } from '../../shared/store/actions/user-boarding.actions';
+import { UserBoardingActions } from '../../shared/store/actions/user-boarding.actions';
 import { DaycareService } from '../../shared/services/daycare.service';
 import { Daycare } from '../../shared/models/daycare.model';
 import { UserDaycareState } from '../../shared/store/states/user-daycare.state';
-import { UserDaycare } from '../../shared/store/actions/user-daycare.actions';
+import { UserDaycareActions } from '../../shared/store/actions/user-daycare.actions';
 
 /** Sandbox (Facade) Service for the HomeModule. */
 @Injectable({ providedIn: 'root' })
@@ -42,7 +42,7 @@ export class HomeFacadeService implements OnDestroy {
 
     fetchDaycare(): void {
         this._daycareService.fetchDaycare(this.loggedInUser.id).subscribe((daycare) => {
-            this._store.dispatch(new UserDaycare.Initialize(daycare));
+            this._store.dispatch(new UserDaycareActions.Initialize(daycare));
         });
     }
 
@@ -50,7 +50,7 @@ export class HomeFacadeService implements OnDestroy {
         this._daycareService.togglePickupStatus(daycareId).subscribe((daycare) => {
             let prevValue = false;
             this.userDaycare$.subscribe((d) => (prevValue = d.pickupStatus));
-            this._store.dispatch(new UserDaycare.SetPickupStatus(!prevValue));
+            this._store.dispatch(new UserDaycareActions.SetPickupStatus(!prevValue));
         });
     }
 
@@ -60,13 +60,13 @@ export class HomeFacadeService implements OnDestroy {
 
     fetchBoardings(): void {
         this._boardingService.fetchBoardings(this.loggedInUser.id).subscribe((boardings) => {
-            this._store.dispatch(new UserBoarding.InitializeFromHome(boardings));
+            this._store.dispatch(new UserBoardingActions.InitializeFromHome(boardings));
         });
     }
 
     cancelBoarding(boardingId: string): void {
         this._boardingService.cancelBoarding(boardingId).subscribe(() => {
-            this._store.dispatch(new UserBoarding.CancelFromHome(boardingId));
+            this._store.dispatch(new UserBoardingActions.CancelFromHome(boardingId));
         });
     }
 

@@ -1,4 +1,4 @@
-export namespace ActivityStatus {
+export namespace ActivityStatusActions {
     export class SetActingStatus {
         static readonly type = '[HTTP Status Interceptor] SetActingStatus';
         constructor(public status: boolean) {}
