@@ -1,17 +1,17 @@
-import { NgModule, NO_ERRORS_SCHEMA, Injector } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { NativeScriptMaterialBottomSheetModule } from 'nativescript-material-bottomsheet/angular';
 import { themer } from 'nativescript-material-core';
-import { NgxsModule } from '@ngxs/store';
+import { NgxsModule, Store } from '@ngxs/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpStatusService } from './shared/services/http-status.service';
+import { ValidationErrorsStatusService } from './shared/services/validation-errors-status.service';
 import { HttpStatusInterceptor } from './shared/services/http-status-interceptor.service';
-import { setRootInjector } from './shared/services/root-injector';
 import { ngxsConfig } from '../../ngxs.config';
+import { ActivityStatusState } from './shared/store/states/activity-status.state';
 
 import * as imageModule from 'nativescript-image';
 import * as applicationModule from 'tns-core-modules/application';
@@ -36,14 +36,14 @@ if (applicationModule.android) {
         AppRoutingModule,
         NativeScriptHttpClientModule,
         NativeScriptMaterialBottomSheetModule.forRoot(),
-        NgxsModule.forRoot([], ngxsConfig),
+        NgxsModule.forRoot([ActivityStatusState], ngxsConfig),
     ],
     declarations: [AppComponent],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
             multi: true,
-            deps: [HttpStatusService],
+            deps: [ValidationErrorsStatusService, Store],
             useClass: HttpStatusInterceptor,
         },
     ],
@@ -53,8 +53,7 @@ if (applicationModule.android) {
 Pass your application module to the bootstrapModule function located in main.ts to start your app
 */
 export class AppModule {
-    constructor(private injector: Injector) {
-        setRootInjector(injector);
+    constructor() {
         themer.setPrimaryColor('#B6A168');
     }
 }

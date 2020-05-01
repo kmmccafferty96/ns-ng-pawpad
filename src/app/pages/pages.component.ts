@@ -2,16 +2,16 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ChangeDetectorR
 import { RouterExtensions } from 'nativescript-angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular/side-drawer-directives';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material-bottomnavigationbar';
+import { Select } from '@ngxs/store';
 
 import { SideDrawerService } from '../shared/services/side-drawer.service';
 import { AuthService } from '../auth/auth.service';
 import { PageURL } from '../shared/enums/page-url.enum';
-import { Acting } from '../shared/decorators/acting.decorator';
-import { Loading } from '../shared/decorators/loading.decorator';
+import { ActivityStatusState } from '../shared/store/states/activity-status.state';
 
 @Component({
     selector: 'ns-pages',
@@ -19,8 +19,7 @@ import { Loading } from '../shared/decorators/loading.decorator';
     styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
-    @Acting() acting$;
-    @Loading() loading$;
+    @Select(ActivityStatusState.getLoadingStatus) loading$: Observable<boolean>;
     @ViewChild(RadSideDrawerComponent, { static: false })
     drawerComponent: RadSideDrawerComponent;
     @ViewChild('bottomNavigationBar', { read: ElementRef, static: false })

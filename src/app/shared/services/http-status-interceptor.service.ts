@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable, NEVER, throwError } from 'rxjs';
 import { finalize, catchError } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
 
-import { HttpStatusService } from './http-status.service';
+import { ValidationErrorsStatusService } from './validation-errors-status.service';
+import { ActivityStatus } from '../store/actions/activity-status.actions';
 
 @Injectable({ providedIn: 'root' })
 export class HttpStatusInterceptor implements HttpInterceptor {
     private loadingCalls = 0;
     private actingCalls = 0;
 
-    constructor(private httpStatusService: HttpStatusService) {}
+    constructor(private httpStatusService: ValidationErrorsStatusService, private _store: Store) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         this.changeStatus(true, req.method);
@@ -35,10 +37,10 @@ export class HttpStatusInterceptor implements HttpInterceptor {
     changeStatus(v: boolean, method: string): void {
         if (['POST', 'PUT', 'DELETE', 'PATCH'].indexOf(method) > -1) {
             v ? this.actingCalls++ : this.actingCalls--;
-            this.httpStatusService.acting = this.actingCalls > 0;
+            this._store.dispatch(new ActivityStatus.SetActingStatus(this.actingCalls > 0));
         } else if (method === 'GET') {
             v ? this.loadingCalls++ : this.loadingCalls--;
-            this.httpStatusService.loading = this.loadingCalls > 0;
+            this._store.dispatch(new ActivityStatus.SetLoadingStatus(this.loadingCalls > 0));
         }
     }
 }
