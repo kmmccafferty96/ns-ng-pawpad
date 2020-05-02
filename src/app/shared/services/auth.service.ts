@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, BehaviorSubject, of } from 'rxjs';
+import { throwError, BehaviorSubject, of, Observable } from 'rxjs';
 import { alert } from 'tns-core-modules/ui/dialogs';
 import { RouterExtensions } from 'nativescript-angular/router';
-import { setString, getString, hasKey, remove } from 'tns-core-modules/application-settings';
 
 import { User } from '../models/user.model';
+import { SecureStorageServive } from './secure-storage.service';
 
 const FIREBASE_API_KEY = 'AIzaSyB6uxH3Ce3iwXWt93S7ktZulKCWQGugKf8';
 
@@ -26,14 +26,18 @@ export class AuthService {
     private _user = new BehaviorSubject<User>(null);
     private tokenExpirationTimer: number;
 
-    constructor(private http: HttpClient, private router: RouterExtensions) {}
+    constructor(
+        private _http: HttpClient,
+        private _router: RouterExtensions,
+        private _secureStorageService: SecureStorageServive
+    ) {}
 
-    get user() {
+    get user(): Observable<User> {
         return this._user.asObservable();
     }
 
-    login(email: string, password: string) {
-        return this.http
+    login(email: string, password: string): Observable<AuthResponseData> {
+        return this._http
             .post<AuthResponseData>(
                 `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,
                 { email, password, returnSecureToken: true }
@@ -57,8 +61,8 @@ export class AuthService {
             );
     }
 
-    signUp(firstName: string, lastName: string, email: string, password: string) {
-        return this.http
+    signUp(firstName: string, lastName: string, email: string, password: string): Observable<AuthResponseData> {
+        return this._http
             .post<AuthResponseData>(
                 `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`,
                 { email, password, returnSecureToken: true }
@@ -82,17 +86,19 @@ export class AuthService {
             );
     }
 
-    logout() {
+    logout(): void {
         this._user.next(null);
-        remove('userData');
+        this._secureStorageService.removeAll();
         if (this.tokenExpirationTimer) {
             clearTimeout(this.tokenExpirationTimer);
         }
-        this.router.navigate(['/auth'], { clearHistory: true });
+        this._router.navigate(['/auth'], { clearHistory: true });
     }
 
-    autoLogin() {
-        if (!hasKey('userData')) {
+    autoLogin(): Observable<boolean> {
+        const storedUserData = this._secureStorageService.get('userData');
+
+        if (!storedUserData) {
             return of(false);
         }
 
@@ -101,7 +107,7 @@ export class AuthService {
             id: string;
             _token: string;
             _tokenExpirationDate: string;
-        } = JSON.parse(getString('userData'));
+        } = storedUserData;
 
         const loadedUser = new User(
             userData.email,
@@ -120,19 +126,19 @@ export class AuthService {
         return of(false);
     }
 
-    autoLogout(expiryDuration: number) {
+    autoLogout(expiryDuration: number): void {
         this.tokenExpirationTimer = setTimeout(() => this.logout(), expiryDuration);
     }
 
-    private handleLogin(email: string, userId: string, token: string, expiresIn: number) {
+    private handleLogin(email: string, userId: string, token: string, expiresIn: number): void {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
         const user = new User(email, userId, token, expirationDate);
-        setString('userData', JSON.stringify(user));
+        this._secureStorageService.set('userData', JSON.stringify(user));
         this.autoLogout(user.timeToExpiry);
         this._user.next(user);
     }
 
-    private handleError(errorMessage: string) {
+    private handleError(errorMessage: string): void {
         switch (errorMessage) {
             case 'EMAIL_EXISTS':
                 alert('This email address exists already!');
