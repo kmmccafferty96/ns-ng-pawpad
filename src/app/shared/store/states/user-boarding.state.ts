@@ -30,12 +30,8 @@ export class UserBoardingState {
      * @param ctx
      * @param action
      */
-    @Action(UserBoardingActions.InitializeFromHome)
-    @Action(UserBoardingActions.InitializeFromBoarding)
-    initializeUserBoardings(
-        ctx: StateContext<UserBoardingStateModel>,
-        action: UserBoardingActions.InitializeFromHome | UserBoardingActions.InitializeFromBoarding
-    ) {
+    @Action(UserBoardingActions.Initialize)
+    initializeUserBoardings(ctx: StateContext<UserBoardingStateModel>, action: UserBoardingActions.Initialize) {
         ctx.setState(
             produce((draft: UserBoardingStateModel) => {
                 draft.boardings = arrayToObject(action.boardings, 'id') || {};

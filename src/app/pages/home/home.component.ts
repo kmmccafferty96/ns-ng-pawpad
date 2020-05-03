@@ -20,8 +20,6 @@ export class HomeComponent extends PageBase {
 
     constructor(page: Page, private _facadeService: HomeFacadeService) {
         super(page);
-        this._facadeService.fetchBoardings();
-        this._facadeService.fetchDaycare();
     }
 
     onBoardingCancel(boarding: Boarding) {

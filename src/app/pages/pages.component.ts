@@ -9,9 +9,9 @@ import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material
 import { Select } from '@ngxs/store';
 
 import { SideDrawerService } from '../shared/services/side-drawer.service';
-import { AuthService } from '../shared/services/auth.service';
 import { PageURL } from '../shared/enums/page-url.enum';
 import { ActivityStatusState } from '../shared/store/states/activity-status.state';
+import { PagesFacadeService } from './pages-facade.service';
 
 @Component({
     selector: 'ns-pages',
@@ -24,8 +24,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     drawerComponent: RadSideDrawerComponent;
     @ViewChild('bottomNavigationBar', { read: ElementRef, static: false })
     bottomNavigationBar: ElementRef<BottomNavigationBar>;
-    private _routerSub: Subscription;
-    private _drawerSub: Subscription;
+    private _subscriptions = new Subscription();
     private _drawer: RadSideDrawer;
     private _pageIndexMap = [
         PageURL.Home.toString(),
@@ -39,29 +38,37 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     pageUrl = PageURL;
 
     constructor(
+        private _facadeService: PagesFacadeService,
         private _router: RouterExtensions,
         private _page: Page,
         private _route: ActivatedRoute,
         private _sideDrawerService: SideDrawerService,
-        private _changeDetectorRef: ChangeDetectorRef,
-        private _authService: AuthService
+        private _changeDetectorRef: ChangeDetectorRef
     ) {}
 
     ngOnInit() {
         this._page.actionBarHidden = true;
 
-        this._drawerSub = this._sideDrawerService.drawerState.subscribe(() => {
-            if (this._drawer) {
-                this.drawerComponent.sideDrawer.toggleDrawerState();
-            }
-        });
+        this._subscriptions.add(
+            this._sideDrawerService.drawerState.subscribe(() => {
+                if (this._drawer) {
+                    this.drawerComponent.sideDrawer.toggleDrawerState();
+                }
+            })
+        );
 
         // Subscribe to route changes in order to update bottom navigation status
-        this._routerSub = this._router.router.events.subscribe((event) => {
-            if (event instanceof NavigationEnd) {
-                this.selectTabByRouteString(event.url);
-            }
-        });
+        this._subscriptions.add(
+            this._router.router.events.subscribe((event) => {
+                if (event instanceof NavigationEnd) {
+                    this.selectTabByRouteString(event.url);
+                }
+            })
+        );
+
+        // Load init data
+        this._facadeService.fetchBoardings();
+        this._facadeService.fetchDaycare();
     }
 
     ngAfterViewInit() {
@@ -98,15 +105,12 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
 
     onLogout() {
         this._sideDrawerService.toggleDrawer();
-        this._authService.logout();
+        this._facadeService.logout();
     }
 
     ngOnDestroy() {
-        if (this._drawerSub) {
-            this._drawerSub.unsubscribe();
-        }
-        if (this._routerSub) {
-            this._routerSub.unsubscribe();
+        if (this._subscriptions) {
+            this._subscriptions.unsubscribe();
         }
     }
 

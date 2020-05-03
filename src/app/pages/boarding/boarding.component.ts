@@ -17,7 +17,6 @@ export class BoardingComponent extends PageBase {
 
     constructor(page: Page, private _facadeService: BoardingFacadeService) {
         super(page);
-        this._facadeService.fetchBoardings();
     }
 
     onBoardingCancel(boarding: Boarding) {
