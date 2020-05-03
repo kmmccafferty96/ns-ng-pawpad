@@ -2,7 +2,7 @@
 export enum PageURL {
     Home = '',
     Boarding = 'boarding',
-    Camera = 'camera',
+    LiveVideo = 'live-video',
     Services = 'our-services',
     Contact = 'contact',
 }

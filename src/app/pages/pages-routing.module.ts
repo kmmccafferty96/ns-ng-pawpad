@@ -19,8 +19,8 @@ const routes: Routes = [
                 loadChildren: () => import('~/app/pages/boarding/boarding.module').then((m) => m.BoardingModule),
             },
             {
-                path: PageURL.Camera,
-                loadChildren: () => import('~/app/pages/camera/camera.module').then((m) => m.CameraModule),
+                path: PageURL.LiveVideo,
+                loadChildren: () => import('~/app/pages/live-video/live-video.module').then((m) => m.LiveVideoModule),
             },
             {
                 path: PageURL.Contact,

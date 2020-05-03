@@ -29,7 +29,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     private _pageIndexMap = [
         PageURL.Home.toString(),
         PageURL.Boarding.toString(),
-        PageURL.Camera.toString(),
+        PageURL.LiveVideo.toString(),
         PageURL.Contact.toString(),
         PageURL.Services.toString(),
     ];
