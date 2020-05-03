@@ -3,7 +3,7 @@ import { SecureStorage } from 'nativescript-secure-storage';
 
 /** Service for storing device data in the form of key-value pairs securely. */
 @Injectable({ providedIn: 'root' })
-export class SecureStorageServive implements OnInit {
+export class SecureStorageService implements OnInit {
     /** Secure Storage object. */
     secureStorage = new SecureStorage();
 
