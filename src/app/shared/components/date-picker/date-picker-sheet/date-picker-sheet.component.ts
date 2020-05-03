@@ -1,7 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
 import * as moment from 'moment';
-
 import { RadCalendarComponent } from 'nativescript-ui-calendar/angular/calendar-directives';
 import { DateRange } from 'nativescript-ui-calendar';
 
@@ -13,7 +12,7 @@ import { DateRange } from 'nativescript-ui-calendar';
 })
 export class DatePickerSheetComponent implements AfterViewInit {
     /** Calendar in the template */
-    @ViewChild(RadCalendarComponent, { static: false }) private calendarComponent: RadCalendarComponent;
+    @ViewChild('calendar', { static: false }) private calendarComponent: RadCalendarComponent;
 
     /** Current date for use in the template */
     currentDate: moment.Moment = moment();
@@ -27,8 +26,8 @@ export class DatePickerSheetComponent implements AfterViewInit {
         setTimeout(() => {
             const dateRange: DateRange = this._bottomSheetParams.context;
             if (dateRange) {
-                this.calendarComponent.calendar.displayedDate = dateRange.startDate;
-                this.calendarComponent.calendar.selectedDateRange = dateRange;
+                this.calendarComponent.nativeElement.displayedDate = dateRange.startDate;
+                this.calendarComponent.nativeElement.selectedDateRange = dateRange;
             }
         });
     }
@@ -40,7 +39,7 @@ export class DatePickerSheetComponent implements AfterViewInit {
 
     /** Save the calendar and return the selected date range (undefined if nothing selected) */
     save() {
-        const dateRange = this.calendarComponent.calendar.selectedDateRange;
+        const dateRange = this.calendarComponent.nativeElement.selectedDateRange;
         this._bottomSheetParams.closeCallback(dateRange);
     }
 }
