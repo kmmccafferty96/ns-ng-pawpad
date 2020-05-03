@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Subscription, Observable } from 'rxjs';
+import { Store, Select } from '@ngxs/store';
 
 import { User } from '../shared/models/user.model';
 import { AuthService } from '../shared/services/auth.service';
@@ -8,11 +8,14 @@ import { DaycareService } from '../shared/services/daycare.service';
 import { BoardingService } from '../shared/services/boarding.service';
 import { UserDaycareActions } from '../shared/store/actions/user-daycare.actions';
 import { UserBoardingActions } from '../shared/store/actions/user-boarding.actions';
+import { ActivityStatusState } from '../shared/store/states/activity-status.state';
 
 /** Sandbox (Facade) Service for the PagesModule. */
 @Injectable({ providedIn: 'root' })
 export class PagesFacadeService implements OnDestroy {
     private _subscriptions = new Subscription();
+
+    @Select(ActivityStatusState.getLoadingStatus) loading$: Observable<boolean>;
 
     // User that is logged in. This is set by the user observable from the authService.
     loggedInUser: User;

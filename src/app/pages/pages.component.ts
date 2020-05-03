@@ -19,7 +19,7 @@ import { PagesFacadeService } from './pages-facade.service';
     styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
-    @Select(ActivityStatusState.getLoadingStatus) loading$: Observable<boolean>;
+    loading$ = this._facadeService.loading$;
     @ViewChild(RadSideDrawerComponent, { static: false })
     drawerComponent: RadSideDrawerComponent;
     @ViewChild('bottomNavigationBar', { read: ElementRef, static: false })
