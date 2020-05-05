@@ -1,6 +1,7 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { DateRange } from 'nativescript-ui-calendar';
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet/angular';
+import { take } from 'rxjs/operators';
 
 import { DatePickerSheetComponent } from './date-picker-sheet/date-picker-sheet.component';
 import { SheetService } from '../../services/sheet.service';
@@ -21,10 +22,13 @@ export class DatePickerComponent {
             context: this.dateRange,
         };
 
-        this._sheetService.show(DatePickerSheetComponent, options).subscribe((result) => {
-            if (result) {
-                this.dateRange = result;
-            }
-        });
+        this._sheetService
+            .show(DatePickerSheetComponent, options)
+            .pipe(take(1))
+            .subscribe((result) => {
+                if (result) {
+                    this.dateRange = result;
+                }
+            });
     }
 }

@@ -1,5 +1,6 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Store, Select } from '@ngxs/store';
 
 import { BoardingService } from '../../shared/services/boarding.service';
@@ -9,9 +10,7 @@ import { UserBoardingActions } from '../../shared/store/actions/user-boarding.ac
 
 /** Sandbox (Facade) Service for the BoardingModule. */
 @Injectable({ providedIn: 'root' })
-export class BoardingFacadeService implements OnDestroy {
-    private _subscriptions = new Subscription();
-
+export class BoardingFacadeService {
     @Select(UserBoardingState.getUserBoardings) userBoardings$: Observable<Boarding[]>;
 
     constructor(private _store: Store, private _boardingService: BoardingService) {}
@@ -19,16 +18,13 @@ export class BoardingFacadeService implements OnDestroy {
     // #region BoardingService abstractions
 
     cancelBoarding(boardingId: string): void {
-        this._boardingService.cancelBoarding(boardingId).subscribe(() => {
-            this._store.dispatch(new UserBoardingActions.CancelFromBoarding(boardingId));
-        });
+        this._boardingService
+            .cancelBoarding(boardingId)
+            .pipe(take(1))
+            .subscribe(() => {
+                this._store.dispatch(new UserBoardingActions.CancelFromBoarding(boardingId));
+            });
     }
 
     // #endregion
-
-    ngOnDestroy(): void {
-        if (this._subscriptions) {
-            this._subscriptions.unsubscribe();
-        }
-    }
 }

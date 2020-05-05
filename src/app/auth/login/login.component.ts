@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { isAndroid } from 'tns-core-modules/platform';
 import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { take } from 'rxjs/operators';
 
 import { AuthService } from '../../shared/services/auth.service';
 
@@ -43,14 +44,17 @@ export class LoginComponent implements OnInit {
         const password = this.form.get('password').value;
 
         this.isLoading = true;
-        this._authService.login(email, password).subscribe(
-            (response) => {
-                this.isLoading = false;
-                this._router.navigateByUrl('/pages', { clearHistory: true });
-            },
-            (error) => {
-                this.isLoading = false;
-            }
-        );
+        this._authService
+            .login(email, password)
+            .pipe(take(1))
+            .subscribe(
+                (response) => {
+                    this.isLoading = false;
+                    this._router.navigateByUrl('/pages', { clearHistory: true });
+                },
+                (error) => {
+                    this.isLoading = false;
+                }
+            );
     }
 }

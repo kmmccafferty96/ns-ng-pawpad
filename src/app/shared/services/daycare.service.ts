@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Daycare } from '../models/daycare.model';
-import { HttpStatusInterceptor } from './http-status-interceptor.service';
-import { User } from '../models/user.model';
-import { daycares } from '../mock-data/daycare.data';
 import { Observable, of } from 'rxjs';
-import { Boarding } from '../models/boarding.model';
 import { tap, delay } from 'rxjs/operators';
+
+import { daycares } from '../mock-data/daycare.data';
+import { HttpStatusInterceptor } from './http-status-interceptor.service';
+import { Daycare } from '../models/daycare.model';
 
 @Injectable({ providedIn: 'root' })
 export class DaycareService {
