@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
 
 import { BoardingService } from '../../shared/services/boarding.service';
@@ -14,7 +13,9 @@ import { UserDaycareActions } from '../../shared/store/actions/user-daycare.acti
 
 /** Sandbox (Facade) Service for the HomeModule. */
 @Injectable({ providedIn: 'root' })
-export class HomeFacadeService {
+export class HomeFacadeService implements OnDestroy {
+    private _subscriptions = new Subscription();
+
     @Select(UserBoardingState.getUserBoardings) userBoardings$: Observable<Boarding[]>;
     @Select(UserDaycareState.getUserDaycare) userDaycare$: Observable<Daycare>;
 
@@ -27,14 +28,13 @@ export class HomeFacadeService {
     // #region DaycareService abstractions
 
     toggleDaycarePickupStatus(daycareId: string): void {
-        this._daycareService
-            .togglePickupStatus(daycareId)
-            .pipe(take(1))
-            .subscribe((daycare) => {
+        this._subscriptions.add(
+            this._daycareService.togglePickupStatus(daycareId).subscribe((daycare) => {
                 let prevValue = false;
-                this.userDaycare$.pipe(take(1)).subscribe((d) => (prevValue = d.pickupStatus));
+                this._subscriptions.add(this.userDaycare$.subscribe((d) => (prevValue = d.pickupStatus)));
                 this._store.dispatch(new UserDaycareActions.SetPickupStatus(!prevValue));
-            });
+            })
+        );
     }
 
     // #endregion
@@ -42,13 +42,18 @@ export class HomeFacadeService {
     // #region BoardingService abstractions
 
     cancelBoarding(boardingId: string): void {
-        this._boardingService
-            .cancelBoarding(boardingId)
-            .pipe(take(1))
-            .subscribe(() => {
+        this._subscriptions.add(
+            this._boardingService.cancelBoarding(boardingId).subscribe(() => {
                 this._store.dispatch(new UserBoardingActions.CancelFromHome(boardingId));
-            });
+            })
+        );
     }
 
     // #endregion
+
+    ngOnDestroy(): void {
+        if (this._subscriptions) {
+            this._subscriptions.unsubscribe();
+        }
+    }
 }

@@ -2,15 +2,13 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ChangeDetectorR
 import { RouterExtensions } from 'nativescript-angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular/side-drawer-directives';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { TabSelectedEventData, BottomNavigationBar } from 'nativescript-material-bottomnavigationbar';
-import { Select } from '@ngxs/store';
 
 import { SideDrawerService } from '../shared/services/side-drawer.service';
 import { PageURL } from '../shared/enums/page-url.enum';
-import { ActivityStatusState } from '../shared/store/states/activity-status.state';
 import { PagesFacadeService } from './pages-facade.service';
 
 @Component({
@@ -108,12 +106,6 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         this._facadeService.logout();
     }
 
-    ngOnDestroy() {
-        if (this._subscriptions) {
-            this._subscriptions.unsubscribe();
-        }
-    }
-
     /**
      * This method doesn't do a whole lot - nothing actually. It's called on the tap event of
      * the GridLayout as a workaround to suppress any clicks behind it on Android.
@@ -141,5 +133,11 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
         }
 
         return route;
+    }
+
+    ngOnDestroy(): void {
+        if (this._subscriptions) {
+            this._subscriptions.unsubscribe();
+        }
     }
 }

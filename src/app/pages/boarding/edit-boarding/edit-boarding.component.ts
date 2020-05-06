@@ -1,8 +1,8 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, OnDestroy } from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { DateRange } from 'nativescript-ui-calendar';
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet/angular';
-import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { PageBase } from '../../../shared/classes/page-base';
 import { DatePickerSheetComponent } from '../../../shared/components/date-picker/date-picker-sheet/date-picker-sheet.component';
@@ -13,25 +13,33 @@ import { SheetService } from '../../../shared/services/sheet.service';
     templateUrl: './edit-boarding.component.html',
     styleUrls: ['./edit-boarding.component.scss'],
 })
-export class EditBoardingComponent extends PageBase {
+export class EditBoardingComponent extends PageBase implements OnDestroy {
+    private _subscriptions = new Subscription();
+
     dateRange: DateRange;
 
     constructor(page: Page, private _sheetService: SheetService, private _viewContainerRef: ViewContainerRef) {
         super(page);
     }
+
     openDateSheet() {
         const options: BottomSheetOptions = {
             viewContainerRef: this._viewContainerRef,
             context: this.dateRange,
         };
 
-        this._sheetService
-            .show(DatePickerSheetComponent, options)
-            .pipe(take(1))
-            .subscribe((result) => {
+        this._subscriptions.add(
+            this._sheetService.show(DatePickerSheetComponent, options).subscribe((result) => {
                 if (result) {
                     this.dateRange = result;
                 }
-            });
+            })
+        );
+    }
+
+    ngOnDestroy(): void {
+        if (this._subscriptions) {
+            this._subscriptions.unsubscribe();
+        }
     }
 }

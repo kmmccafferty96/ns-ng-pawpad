@@ -1,6 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { Store, Select } from '@ngxs/store';
 
 import { User } from '../shared/models/user.model';
@@ -46,12 +45,11 @@ export class PagesFacadeService implements OnDestroy {
     // #region DaycareService abstractions
 
     fetchDaycare(): void {
-        this._daycareService
-            .fetchDaycare(this.loggedInUser.id)
-            .pipe(take(1))
-            .subscribe((daycare) => {
+        this._subscriptions.add(
+            this._daycareService.fetchDaycare(this.loggedInUser.id).subscribe((daycare) => {
                 this._store.dispatch(new UserDaycareActions.Initialize(daycare));
-            });
+            })
+        );
     }
 
     // #endregion
@@ -59,12 +57,11 @@ export class PagesFacadeService implements OnDestroy {
     // #region BoardingService abstractions
 
     fetchBoardings(): void {
-        this._boardingService
-            .fetchBoardings(this.loggedInUser.id)
-            .pipe(take(1))
-            .subscribe((boardings) => {
+        this._subscriptions.add(
+            this._boardingService.fetchBoardings(this.loggedInUser.id).subscribe((boardings) => {
                 this._store.dispatch(new UserBoardingActions.Initialize(boardings));
-            });
+            })
+        );
     }
 
     // #endregion
