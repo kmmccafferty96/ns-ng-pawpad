@@ -1,10 +1,9 @@
-import { Moment } from 'moment';
 import { Dog } from './dog.model';
 
 export interface Daycare {
     id: string;
     userId: string;
     dogs: Dog[];
-    startDate: Moment;
+    startDate: Date;
     pickupStatus: boolean;
 }

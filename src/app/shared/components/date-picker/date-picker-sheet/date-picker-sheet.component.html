@@ -1,12 +1,5 @@
 <GridLayout height="300" rows="*, auto" columns="*, *">
-    <RadCalendar
-        #calendar
-        row="0"
-        col="0"
-        colSpan="2"
-        selectionMode="Range"
-        [minDate]="currentDate.toDate()"
-    ></RadCalendar>
+    <RadCalendar #calendar row="0" col="0" colSpan="2" selectionMode="Range" [minDate]="currentDate"></RadCalendar>
     <MDButton row="1" col="0" class="md-btn" text="Close" (tap)="close()"></MDButton>
     <MDButton row="1" col="1" class="md-btn" text="Save" (tap)="save()"></MDButton>
 </GridLayout>

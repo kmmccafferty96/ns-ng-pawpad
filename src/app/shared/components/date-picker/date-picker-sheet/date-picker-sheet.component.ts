@@ -1,6 +1,5 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
-import * as moment from 'moment';
 import { RadCalendarComponent } from 'nativescript-ui-calendar/angular/calendar-directives';
 import { DateRange } from 'nativescript-ui-calendar';
 
@@ -15,7 +14,7 @@ export class DatePickerSheetComponent implements AfterViewInit {
     @ViewChild('calendar', { static: false }) private calendarComponent: RadCalendarComponent;
 
     /** Current date for use in the template */
-    currentDate: moment.Moment = moment();
+    currentDate: Date = new Date();
 
     constructor(private _bottomSheetParams: BottomSheetParams) {}
 
