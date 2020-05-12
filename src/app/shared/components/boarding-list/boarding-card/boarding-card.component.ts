@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { format } from 'date-fns';
+
 import { Boarding } from '../../../models/boarding.model';
 
 /** Component that displays a boarding card. */
@@ -14,8 +16,16 @@ export class BoardingCardComponent {
     /** Event emitted when the boarding card is tapped. */
     @Output() boardingTap = new EventEmitter<Boarding>();
 
+    /**
+     * Formats dates in the correct format to display in the card.
+     * @param date - the date to format.
+     */
+    formatDate(date: Date): string {
+        return format(date, 'M/d/yyyy');
+    }
+
     /** Boarding card tapped event handler. */
-    onBoardingTap() {
+    onBoardingTap(): void {
         this.boardingTap.emit(this.boarding);
     }
 }

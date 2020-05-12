@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { action } from 'tns-core-modules/ui/dialogs/dialogs';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { format } from 'date-fns';
 
 import { Boarding } from '../../models/boarding.model';
 import { PageURL } from '../../enums/page-url.enum';
@@ -27,8 +28,9 @@ export class BoardingListComponent {
      */
     async showBoardingActions(boarding: Boarding): Promise<void> {
         const response = await action({
-            title: `Boarding scheduled from ${boarding.startDate.format('MM/DD/YYYY')} to ${boarding.endDate.format(
-                'MM/DD/YYYY'
+            title: `Boarding scheduled from ${format(boarding.startDate, 'M/d/yyyy')} to ${format(
+                boarding.endDate,
+                'M/d/yyyy'
             )}`,
             cancelButtonText: 'Close',
             actions: ['Edit Boarding', 'Cancel Boarding'],
@@ -66,9 +68,10 @@ export class BoardingListComponent {
     private confirmCancel(boarding: Boarding): Promise<boolean> {
         return this._dialogService.showConfirm({
             title: 'Cancel Boarding?',
-            message: `Are you sure you want to cancel your boarding scheduled from ${boarding.startDate.format(
-                'MM/DD/YYYY'
-            )} to ${boarding.endDate.format('MM/DD/YYYY')}?`,
+            message: `Are you sure you want to cancel your boarding scheduled from ${format(
+                boarding.startDate,
+                'M/d/yyyy'
+            )} to ${format(boarding.startDate, 'M/d/yyyy')}?`,
             okButtonText: 'Yes, cancel',
             cancelButtonText: 'No',
         });
