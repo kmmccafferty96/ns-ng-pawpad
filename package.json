@@ -14,6 +14,17 @@
     "scripts": {
         "clean": "rm -rf node_modules/ platforms/ package-lock.json hooks"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged",
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
     "dependencies": {
         "@angular/animations": "~8.2.0",
         "@angular/common": "~8.2.0",
@@ -57,13 +68,9 @@
         "nativescript-dev-webpack": "^1.5.1",
         "node-sass": "^4.14.1",
         "prettier": "^2.0.5",
+        "pretty-quick": "^2.0.1",
         "tslint": "^6.1.2",
         "typescript": "~3.5.3"
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
     },
     "gitHead": "f28dbc60d74dd2cef4b645afd8fdd63bbb12c73e",
     "readme": "NativeScript Application"
