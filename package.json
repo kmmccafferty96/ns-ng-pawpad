@@ -2,10 +2,10 @@
     "nativescript": {
         "id": "org.nativescript.nsngpawpad",
         "tns-android": {
-            "version": "6.5.0"
+            "version": "6.5.1"
         },
         "tns-ios": {
-            "version": "6.5.0"
+            "version": "6.5.1"
         }
     },
     "description": "NativeScript Application",
