@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
-import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
+import { NativeScriptModule } from '@nativescript/angular/nativescript.module';
+import { NativeScriptHttpClientModule } from '@nativescript/angular/http-client';
 import { NativeScriptMaterialBottomSheetModule } from 'nativescript-material-bottomsheet/angular';
 import { themer } from 'nativescript-material-core';
 import { NgxsModule, Store } from '@ngxs/store';
@@ -14,7 +14,7 @@ import { ngxsConfig } from '../../ngxs.config';
 import { ActivityStatusState } from './shared/store/states/activity-status.state';
 
 import * as imageModule from 'nativescript-image';
-import * as applicationModule from 'tns-core-modules/application';
+import * as applicationModule from '@nativescript/core/application';
 
 // Needed for nativescript-image to work on Android
 if (applicationModule.android) {
@@ -24,10 +24,10 @@ if (applicationModule.android) {
 }
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+// import { NativeScriptFormsModule } from "@nativescript/angular/forms";
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+// import { NativeScriptHttpClientModule } from "@nativescript/angular/http-client";
 
 @NgModule({
     bootstrap: [AppComponent],

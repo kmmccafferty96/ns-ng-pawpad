@@ -1,6 +1,6 @@
 import { CanLoad, Route, UrlSegment } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { RouterExtensions } from 'nativescript-angular/router';
+import { RouterExtensions } from '@nativescript/angular/router';
 import { Observable, of } from 'rxjs';
 import { take, switchMap, tap } from 'rxjs/operators';
 

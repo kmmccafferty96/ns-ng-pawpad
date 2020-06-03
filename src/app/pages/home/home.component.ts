@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Page } from 'tns-core-modules/ui/page/page';
+import { Page } from '@nativescript/core/ui/page/page';
 
 import { PageBase } from '../../shared/classes/page-base';
 import { HomeFacadeService } from './home-facade.service';

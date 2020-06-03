@@ -1,4 +1,4 @@
-import { Page } from 'tns-core-modules/ui/page/page';
+import { Page } from '@nativescript/core/ui/page/page';
 
 /** Base class for all pages in app */
 export class PageBase {

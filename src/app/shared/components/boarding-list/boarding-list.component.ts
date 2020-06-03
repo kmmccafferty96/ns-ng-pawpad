@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { action } from 'tns-core-modules/ui/dialogs/dialogs';
-import { RouterExtensions } from 'nativescript-angular/router';
+import { action } from '@nativescript/core/ui/dialogs/dialogs';
+import { RouterExtensions } from '@nativescript/angular/router';
 import { format } from 'date-fns';
 
 import { Boarding } from '../../models/boarding.model';

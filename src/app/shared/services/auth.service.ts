@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject, of, Observable } from 'rxjs';
-import { alert } from 'tns-core-modules/ui/dialogs';
-import { RouterExtensions } from 'nativescript-angular/router';
+import { alert } from '@nativescript/core/ui/dialogs';
+import { RouterExtensions } from '@nativescript/angular/router';
 
 import { User } from '../models/user.model';
 import { SecureStorageService } from './secure-storage.service';
