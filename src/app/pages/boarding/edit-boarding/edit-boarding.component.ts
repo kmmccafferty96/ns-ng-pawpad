@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef, OnDestroy } from '@angular/core';
-import { Page } from 'tns-core-modules/ui/page/page';
+import { Page } from '@nativescript/core/ui/page/page';
 import { DateRange } from 'nativescript-ui-calendar';
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet/angular';
 import { Subscription } from 'rxjs';

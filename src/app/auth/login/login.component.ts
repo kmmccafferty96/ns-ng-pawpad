@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { isAndroid } from 'tns-core-modules/platform';
-import { Page } from 'tns-core-modules/ui/page';
-import { RouterExtensions } from 'nativescript-angular/router';
+import { isAndroid } from '@nativescript/core/platform';
+import { Page } from '@nativescript/core/ui/page';
+import { RouterExtensions } from '@nativescript/angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../../shared/services/auth.service';

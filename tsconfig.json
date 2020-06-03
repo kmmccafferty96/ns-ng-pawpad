@@ -7,12 +7,17 @@
         "noEmitHelpers": true,
         "noEmitOnError": true,
         "skipLibCheck": true,
-        "lib": ["esnext", "dom", "es2015.iterable"],
+        "lib": ["es2017", "dom", "es6"],
         "baseUrl": ".",
         "paths": {
             "~/*": ["src/*"],
             "*": ["./node_modules/*"]
         }
     },
-    "exclude": ["node_modules", "platforms"]
+    "angularCompilerOptions": {
+        "enableIvy": false
+    },
+    "includes": ["references.d.ts"],
+    "files": ["./src/main.ts"],
+    "exclude": ["node_modules", "platforms", "**/*.aot", "e2e"]
 }
