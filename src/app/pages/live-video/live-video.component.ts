@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Page } from '@nativescript/core/ui/page/page';
 
 import { PageBase } from '../../shared/classes/page-base';
 
@@ -7,4 +8,8 @@ import { PageBase } from '../../shared/classes/page-base';
     templateUrl: './live-video.component.html',
     styleUrls: ['./live-video.component.css'],
 })
-export class LiveVideoComponent extends PageBase {}
+export class LiveVideoComponent extends PageBase {
+    constructor(page: Page) {
+        super(page);
+    }
+}
