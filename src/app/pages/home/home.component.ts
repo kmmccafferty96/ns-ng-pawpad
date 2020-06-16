@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Page } from '@nativescript/core/ui/page/page';
 
 import { PageBase } from '../../shared/classes/page-base';

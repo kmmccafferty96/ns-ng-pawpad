@@ -15,7 +15,7 @@
         }
     },
     "angularCompilerOptions": {
-        "enableIvy": false
+        "enableIvy": true
     },
     "includes": ["references.d.ts"],
     "files": ["./src/main.ts"],
