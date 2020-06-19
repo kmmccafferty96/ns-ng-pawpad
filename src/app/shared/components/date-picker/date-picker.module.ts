@@ -1,11 +1,10 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { DatePickerSheetComponent } from './date-picker-sheet/date-picker-sheet.component';
 import { DatePickerComponent } from './date-picker.component';
+import { DatePickerSheetComponent } from './date-picker-sheet/date-picker-sheet.component';
 
 @NgModule({
-    declarations: [DatePickerSheetComponent, DatePickerComponent],
-    entryComponents: [DatePickerSheetComponent],
+    declarations: [DatePickerComponent, DatePickerSheetComponent],
     exports: [DatePickerComponent],
     schemas: [NO_ERRORS_SCHEMA],
 })
