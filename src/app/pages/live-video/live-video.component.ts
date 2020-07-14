@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Page } from '@nativescript/core/ui/page';
+import { Page } from '@nativescript/core';
 
 import { PageBase } from '../../shared/classes/page-base';
 

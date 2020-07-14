@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject, of, Observable } from 'rxjs';
 import { alert } from '@nativescript/core/ui/dialogs';
-import { RouterExtensions } from '@nativescript/angular/router';
+import { RouterExtensions } from '@nativescript/angular';
 
 import { User } from '../models/user.model';
 import { SecureStorageService } from './secure-storage.service';

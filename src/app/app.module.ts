@@ -1,7 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NativeScriptModule } from '@nativescript/angular/nativescript.module';
-import { NativeScriptHttpClientModule } from '@nativescript/angular/http-client';
+import { NativeScriptModule, NativeScriptHttpClientModule } from '@nativescript/angular';
 import { NativeScriptMaterialBottomSheetModule } from 'nativescript-material-bottomsheet/angular';
 import { themer } from 'nativescript-material-core';
 import { NgxsModule, Store } from '@ngxs/store';
@@ -24,10 +23,10 @@ if (applicationModule.android) {
 }
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "@nativescript/angular/forms";
+// import { NativeScriptFormsModule } from "@nativescript/angular";
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "@nativescript/angular/http-client";
+// import { NativeScriptHttpClientModule } from "@nativescript/angular";
 
 @NgModule({
     bootstrap: [AppComponent],

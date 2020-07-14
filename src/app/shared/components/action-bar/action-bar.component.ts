@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { isAndroid } from '@nativescript/core/platform';
-import { Page } from '@nativescript/core/ui/page';
-import { RouterExtensions } from '@nativescript/angular/router';
+import { isAndroid, Page } from '@nativescript/core';
+import { RouterExtensions } from '@nativescript/angular';
 
 import { SideDrawerService } from '../../services/side-drawer.service';
 

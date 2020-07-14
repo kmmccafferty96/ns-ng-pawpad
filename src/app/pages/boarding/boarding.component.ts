@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Page } from '@nativescript/core/ui/page/page';
+import { Page } from '@nativescript/core';
 
 import { PageBase } from '../../shared/classes/page-base';
 import { BoardingFacadeService } from './boarding-facade.service';
